@@ -1,0 +1,30 @@
+<div class="flex relative">
+  <div class="fixed h-screen w-64 bg-gradient-to-br from-violet-950 via-violet-900 to-violet-950">
+    <ul class="mt-8 space-y-4 text-white p-3">
+      <li>
+        <a
+          routerLink="courses"
+          routerLinkActive="bg-violet-800"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="block p-4 hover:bg-violet-800 rounded-lg"
+        >
+          Courses
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="categories"
+          routerLinkActive="bg-violet-800"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="block p-4 hover:bg-violet-800 rounded-lg"
+        >
+          Categories
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="ml-64 flex-1 p-8 min-h-[92vh]">
+    <router-outlet></router-outlet>
+  </div>
+</div>

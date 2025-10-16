@@ -1,0 +1,118 @@
+<div
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 shadow-xl bg-white rounded-2xl w-[90%] max-w-[1400px] mx-auto"
+>
+  @if(courses.length > 0){ @for (course of courses; track $index) {
+  <div
+    class="flex flex-col bg-white border border-violet-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden h-[480px]"
+  >
+    <div class="relative h-48 w-full bg-gray-50 overflow-hidden flex-shrink-0">
+      <img
+        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        src="{{ course.imgUrl }}"
+        alt="{{ course.name }}"
+      />
+    </div>
+
+    <div class="flex flex-col flex-grow p-5">
+      <h5 class="text-lg font-semibold tracking-tight text-gray-900 mb-2 line-clamp-1" title="{{ course.name }}">
+        {{ course.name }}
+      </h5>
+
+      <p class="text-gray-600 text-sm mb-4 line-clamp-3 break-words text-ellipsis flex-grow" title="{{ course.description }}">
+        {{ course.description }}
+      </p>
+
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-1">
+          <svg
+            class="w-4 h-4 text-yellow-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 22 20"
+          >
+            <path
+              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+            />
+          </svg>
+          <svg
+            class="w-4 h-4 text-yellow-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 22 20"
+          >
+            <path
+              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+            />
+          </svg>
+          <svg
+            class="w-4 h-4 text-yellow-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 22 20"
+          >
+            <path
+              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+            />
+          </svg>
+          <svg
+            class="w-4 h-4 text-yellow-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 22 20"
+          >
+            <path
+              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+            />
+          </svg>
+          <svg
+            class="w-4 h-4 text-gray-300"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 22 20"
+          >
+            <path
+              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+            />
+          </svg>
+        </div>
+        <span
+          class="bg-violet-100 text-violet-800 text-xs font-semibold px-2.5 py-0.5 rounded"
+          >{{ course.rate }}</span
+        >
+      </div>
+
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-2xl font-bold text-violet-900">${{ course.price }}</span>
+      </div>
+
+      <div class="flex items-center gap-3 mt-auto">
+        <a
+          href="#"
+          class="flex-1 text-white text-center bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 hover:shadow-md transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5"
+          >Edit</a
+        >
+        <a
+          href="#"
+          class="flex-1 text-white text-center bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 hover:shadow-md transition-all duration-200 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5"
+        >
+          Delete
+        </a>
+      </div>
+    </div>
+  </div>
+
+  } } @else {
+  <div class="col-span-full flex items-center justify-center py-20">
+    <p
+      class="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-violet-400 text-4xl font-bold animate-pulse"
+    >
+      No Courses Yet
+    </p>
+  </div>
+  }
+</div>
