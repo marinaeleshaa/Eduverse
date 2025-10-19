@@ -15,6 +15,10 @@ export class Header {
     this.profileMenuOpen = false;
   }
 
+  logout() {
+    //TODO: implement logout functionality
+  }
+
   toggleProfileMenu(event: Event) {
     event.stopPropagation();
     this.profileMenuOpen = !this.profileMenuOpen;

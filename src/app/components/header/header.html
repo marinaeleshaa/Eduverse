@@ -81,19 +81,19 @@
       <div
         #profile
         data-profileMenu="true"
-        class="w-2/12 bg-white/20 backdrop-blur-2xl absolute top-15 -right-4 rounded"
+        class="w-2/12 bg-white/20 backdrop-blur-2xl absolute top-15 -right-4 rounded-lg"
         (click)="$event.stopPropagation()"
       >
         <div>
           <div class="flex p-2 items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
+              width="80"
+              height="80"
               viewBox="0 0 24 24"
               fill="none"
               stroke="white"
-              stroke-width="2"
+              stroke-width="1"
               stroke-linecap="round"
               stroke-linejoin="round"
               class="lucide lucide-circle-user-round-icon lucide-circle-user-round"
@@ -104,42 +104,55 @@
             </svg>
           </div>
           <div
-            class="px-4 py-2 backdrop-blur-2xl m-2 text-white rounded transition-all flex items-center gap-2 justify-between"
+            class="px-4 py-2 backdrop-blur-2xl m-2 text-white rounded-lg transition-all flex flex-col items-center gap-2"
           >
-            <div class="flex items-center gap-2 text-md font-bold">
-              <p>Name:</p>
-              <p class="text-xs">Lorem</p>
+            <div class="flex items-center justify-center w-full">
+              <div class="flex items-center flex-col gap-1 text-md font-bold">
+                <p class="text-lg">Ahmed</p>
+                <p class="text-xs text-white/80">Ahmed@test.com</p>
+              </div>
             </div>
-            <button
-              routerLink="login"
-              class="w-fit p-2 text-md font-bold text-white rounded-4xl hover:scale-105 cursor-pointer transition-all"
-            >
+            <div class="flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide lucide-log-out-icon lucide-log-out"
+                class="lucide lucide-clock3-icon lucide-clock-3"
               >
-                <path d="m16 17 5-5-5-5" />
-                <path d="M21 12H9" />
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <path d="M12 6v6h4" />
+                <circle cx="12" cy="12" r="10" />
               </svg>
-            </button>
-          </div>
-          <div>
-            <div
-              class="px-4 py-2 backdrop-blur-3xl m-2 text-white rounded transition-all flex items-center gap-2"
-            >
-              <div class="flex items-center gap-2 text-md font-bold">
-                <p>Email:</p>
-                <p class="text-xs">Lorem@test.com</p>
-              </div>
+              <p>Watch Later</p>
+            </div>
+            <div>
+              <button
+                (click)="logout()"
+                class="w-fit p-2 text-md font-bold text-white rounded-4xl hover:scale-105 cursor-pointer transition-all flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-log-out-icon lucide-log-out"
+                >
+                  <path d="m16 17 5-5-5-5" />
+                  <path d="M21 12H9" />
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                </svg>
+                Logout
+              </button>
             </div>
           </div>
         </div>
