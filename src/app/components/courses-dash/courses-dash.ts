@@ -10,8 +10,8 @@ import { ICourse } from '../../Interfaces/icourse';
   styleUrl: './courses-dash.css',
 })
 export class CoursesDash {
-  newCourseAdded!: ICourse;
-  getData(course: any) {
-    this.newCourseAdded = course;
-  }
+  // newCourseAdded!: ICourse;
+  // getData(course: any) {
+  //   this.newCourseAdded = course;
+  // }
 }
