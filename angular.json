@@ -21,7 +21,11 @@
                 "input": "public"
               }
             ],
-            "styles": ["node_modules/swiper/swiper-bundle.css", "src/styles.css"]
+           "styles": [
+  "node_modules/swiper/swiper-bundle.css",
+  "src/styles.css"
+]
+
           },
           "configurations": {
             "production": {

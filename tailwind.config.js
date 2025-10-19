@@ -41,4 +41,5 @@ module.exports = {
     require('@tailwindcss/line-clamp'), // 📏 enables line-clamp utilities
     require('@tailwindcss/aspect-ratio'), // 🖼️ useful for responsive images/videos
   ],
+
 };
