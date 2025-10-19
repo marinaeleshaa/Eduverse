@@ -56,22 +56,47 @@
             </span>
           </div>
         </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-user-round-icon lucide-user-round"
+        <button class="cursor-pointer" (click)="toggleProfileMenu($event)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-user-round-icon lucide-user-round"
+          >
+            <circle cx="12" cy="8" r="5" />
+            <path d="M20 21a8 8 0 0 0-16 0" />
+          </svg>
+        </button>
+
+        @if(profileMenuOpen){
+        <div
+          #profile
+          data-profileMenu="true"
+          class="w-2/12 bg-white absolute -bottom-8 right-2 rounded"
+          (click)="$event.stopPropagation()"
         >
-          <circle cx="12" cy="8" r="5" />
-          <path d="M20 21a8 8 0 0 0-16 0" />
-        </svg>
+          <!-- <p
+              class="w-full px-4 py-2 text-sm font-medium text-green-300 border border-green-300 rounded hover:bg-violet-800 transition-all"
+            >
+              Lorem
+            </p> -->
+          <button
+            routerLink="login"
+            class="w-full px-4 py-2 text-sm font-medium text-green-300 border border-green-300 rounded hover:bg-violet-800 transition-all"
+          >
+            Logout
+          </button>
+        </div>
+        }
       </div>
+
+      <!-- Profile menu -->
 
       <!-- Search button for mobile view -->
       <!-- <button
