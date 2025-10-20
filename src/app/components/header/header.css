@@ -1,14 +1,34 @@
-.leave-animation {
+.leave-profile-animation {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 
-.enter-animation {
-  animation: slide-fade 500ms;
+.enter-profile-animation {
+  animation: slide-y-fade 500ms;
 }
 
-@keyframes slide-fade {
+.leave-cart-animation {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.enter-cart-animation {
+  animation: slide-x-fade 500ms;
+}
+
+@keyframes slide-x-fade {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-y-fade {
   from {
     opacity: 0;
     transform: translateY(20px);
