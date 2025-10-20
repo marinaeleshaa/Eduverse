@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit } from '@angular/core';
 import Swiper from 'swiper';
-// import 'swiper/css';
+import { Autoplay, EffectCoverflow } from 'swiper/modules';
 
 @Component({
   selector: 'app-youtube-slider',
@@ -24,18 +24,25 @@ export class YoutubeSlider implements AfterViewInit {
     'courses/html.jpg',
   ];
   ngAfterViewInit() {
+    Swiper.use([EffectCoverflow, Autoplay]);
+
     const swiper = new Swiper('.swiper-container', {
       loop: true,
       grabCursor: true,
-      slidesPerView: 5.5,
+      slidesPerView: 6.5,
       spaceBetween: 10,
-      speed: 800,
+      speed: 2000,
       coverflowEffect: {
         rotate: 50,
         stretch: 0,
         depth: 450,
         modifier: 1,
         slideShadows: true,
+      },
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        reverseDirection: false,
       },
     });
   }
