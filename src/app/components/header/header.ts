@@ -10,9 +10,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Header {
   profileMenuOpen: boolean;
+  cartMenuOpen: boolean;
 
   constructor() {
     this.profileMenuOpen = false;
+    this.cartMenuOpen = false;
   }
 
   logout() {
@@ -22,14 +24,18 @@ export class Header {
   toggleProfileMenu(event: Event) {
     event.stopPropagation();
     this.profileMenuOpen = !this.profileMenuOpen;
+    this.cartMenuOpen = false;
+  }
+
+  toggleCartMenu(event: Event) {
+    event.stopPropagation();
+    this.cartMenuOpen = !this.cartMenuOpen;
+    this.profileMenuOpen = false;
   }
 
   @HostListener('document:click', ['$event'])
-  closeProfileMenu(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const clickedInside = target.dataset['profileMenu'] === 'true';
-    if (!clickedInside) {
-      this.profileMenuOpen = false;
-    }
+  onDocumentClick(event: Event) {
+    this.profileMenuOpen = false;
+    this.cartMenuOpen = false;
   }
 }
