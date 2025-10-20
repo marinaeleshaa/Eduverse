@@ -1,37 +1,38 @@
 <!-- Login Page -->
 <div class="min-h-screen bg-white flex items-center justify-center p-4">
   <div
-    class="bg-white rounded-2xl shadow-[0_0_25px_rgba(156,163,175,0.6)] w-full max-w-4xl relative"
+    class="bg-white rounded-2xl shadow-[0_0_25px_rgba(156,163,175,0.6)] w-full max-w-3xl flex flex-row-reverse"
   >
     <!-- Decorative gradient top border -->
     <!-- shadow-[0_0_25px_rgba(139,92,246,0.6)] -->
-    <div
-      class="absolute top-0 right-0 w-3/5 h-full bg-gradient-to-br from-violet-900 via-violet-800 to-violet-950 rounded-r-xl [clip-path:polygon(0%_0,100%_0,100%_100%,35%_100%)] text-white font-extrabold text-4xl flex justify-center items-center"
-    >
-      <div class="flex  flex-col justify-center items-center space-y-5 ml-[20%]">
-        <div class=" text-white opacity-85 size-40">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-user-round-check-icon lucide-user-round-check flyingUpAnimation"
-          >
-            <path d="M2 21a8 8 0 0 1 13.292-6" />
-            <circle cx="10" cy="8" r="5" />
-            <path d="m16 19 2 2 4-4" />
-          </svg>
+
+    <div class="w-1/2">
+      <div
+        class="w-full h-full rounded-l-2xl bg-gradient-to-br from-violet-800 via-violet-800 to-violet-950  [clip-path:polygon(0%_0%,62.37%_0%,62.51%_2.5%,62.92%_5%,63.6%_7.5%,64.54%_10%,65.71%_12.5%,67.09%_15%,68.65%_17.5%,70.37%_20%,72.21%_22.5%,74.13%_25%,76.09%_27.5%,78.05%_30%,79.98%_32.5%,81.84%_35%,83.59%_37.5%,85.19%_40%,86.62%_42.5%,87.83%_45%,88.82%_47.5%,89.56%_50%,90.04%_52.5%,90.24%_55%,90.16%_57.5%,89.81%_60%,89.18%_62.5%,88.3%_65%,87.18%_67.5%,85.85%_70%,84.32%_72.5%,82.63%_75%,80.82%_77.5%,78.92%_80%,76.96%_82.5%,75%_85%,73.05%_87.5%,71.18%_90%,69.4%_92.5%,67.76%_95%,66.3%_97.5%,65.03%_100%,0%_100%)] rotate-180 text-white font-extrabold text-4xl flex justify-center items-center"
+      >
+        <div class="flex flex-col justify-center items-center space-y-5 mr-[20%]">
+          <div class="text-white opacity-85 size-40">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-user-round-check-icon lucide-user-round-check flyingUpAnimation rotate-180"
+            >
+              <path d="M2 21a8 8 0 0 1 13.292-6" />
+              <circle cx="10" cy="8" r="5" />
+              <path d="m16 19 2 2 4-4" />
+            </svg>
+          </div>
         </div>
-        <!-- <span class=" text-2xl">Welcome Back</span> -->
       </div>
     </div>
 
-    <!--! flying icons -->
 
-    <div class="p-8 w-1/2">
+    <div class="p-8 pr-0 w-1/2">
       <!-- Header -->
       <div class="mb-8 text-center">
         <h2 class="text-3xl font-bold text-violet-900 mb-2">Sign In</h2>
@@ -99,14 +100,14 @@
       </form>
 
       <!-- Divider -->
-      <!-- <div class="flex items-center my-6">
+      <div class="flex items-center my-6">
         <div class="flex-1 border-t border-gray-300"></div>
         <span class="px-4 text-gray-400 text-sm">OR</span>
         <div class="flex-1 border-t border-gray-300"></div>
-      </div> -->
+      </div>
 
       <!-- Social Login -->
-      <!-- <button
+      <button
         class="w-full border-2 border-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
       >
         <svg class="w-5 h-5" viewBox="0 0 24 24">
@@ -128,7 +129,7 @@
           />
         </svg>
         Continue with Google
-      </button> -->
+      </button>
 
       <!-- Sign Up Link -->
       <p class="text-center text-sm text-gray-600 mt-6">
@@ -142,3 +143,5 @@
     </div>
   </div>
 </div>
+
+
