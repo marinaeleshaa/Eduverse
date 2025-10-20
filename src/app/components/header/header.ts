@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -9,13 +9,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.css',
 })
 export class Header {
-  profileMenuOpen: boolean;
-  cartMenuOpen: boolean;
-
-  constructor() {
-    this.profileMenuOpen = false;
-    this.cartMenuOpen = false;
-  }
+  isProfileShown = signal(false);
+  isCartShown = signal(false);
 
   logout() {
     //TODO: implement logout functionality
@@ -23,19 +18,19 @@ export class Header {
 
   toggleProfileMenu(event: Event) {
     event.stopPropagation();
-    this.profileMenuOpen = !this.profileMenuOpen;
-    this.cartMenuOpen = false;
+    this.isProfileShown.update((value) => !value);
+    this.isCartShown.set(false);
   }
 
   toggleCartMenu(event: Event) {
     event.stopPropagation();
-    this.cartMenuOpen = !this.cartMenuOpen;
-    this.profileMenuOpen = false;
+    this.isCartShown.update((value) => !value);
+    this.isProfileShown.set(false);
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
-    this.profileMenuOpen = false;
-    this.cartMenuOpen = false;
+    this.isProfileShown.set(false);
+    this.isCartShown.set(false);
   }
 }
