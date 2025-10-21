@@ -40,6 +40,8 @@ module.exports = {
     require('@tailwindcss/typography'), // 📰 optional: nice text defaults
     require('@tailwindcss/line-clamp'), // 📏 enables line-clamp utilities
     require('@tailwindcss/aspect-ratio'), // 🖼️ useful for responsive images/videos
+    require('flowbite/plugin')
   ],
+
 
 };
