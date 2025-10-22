@@ -85,7 +85,7 @@
         data-profileMenu="true"
         animate.enter="enter-profile-animation"
         animate.leave="leave-profile-animation"
-        class="w-2/12 bg-white/20 backdrop-blur-2xl absolute top-15 -right-4 rounded-lg"
+        class="w-2/12 bg-white/20 backdrop-blur-2xl fixed top-15 right-0 rounded-lg"
         (click)="$event.stopPropagation()"
       >
         <div>
@@ -377,7 +377,7 @@
   data-cartMenu="true"
   animate.enter="enter-cart-animation"
   animate.leave="leave-cart-animation"
-  class="absolute top-16 right-0 w-96 h-11/12 bg-white/15 backdrop-blur-2xl p-4 rounded-lg z-50"
+  class="fixed top-16 right-0 w-96 h-11/12 bg-white/15 backdrop-blur-2xl p-4 rounded-lg z-50"
   (click)="$event.stopPropagation()"
 >
   <h3 class="text-white text-2xl text-center font-bold mb-4">Cart Items</h3>
