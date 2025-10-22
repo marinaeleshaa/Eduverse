@@ -23,7 +23,7 @@ get footerClasses() {
     'bg-violet-950',
     'text-white',
     'mt-auto',
-    this.currentUrl !== '/home' ? '[clip-path:ellipse(65%_52%_at_51%_70%)] pt-30 bg-gradient-to-br from-violet-950 via-violet-900 to-violet-950' : '',
+    this.currentUrl.includes('/home') ? "" : '[clip-path:ellipse(65%_52%_at_51%_70%)] pt-30 bg-gradient-to-br from-violet-950 via-violet-900 to-violet-950' ,
     this.currentUrl.includes("/dashboard") ? 'hidden' : ''
   ].join(' ');
 }
