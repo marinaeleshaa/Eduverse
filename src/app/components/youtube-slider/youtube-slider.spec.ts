@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Carousel3d } from './carousel3d';
+import { YoutubeSlider } from './youtube-slider';
 
-describe('Carousel3d', () => {
-  let component: Carousel3d;
-  let fixture: ComponentFixture<Carousel3d>;
+describe('YoutubeSlider', () => {
+  let component: YoutubeSlider;
+  let fixture: ComponentFixture<YoutubeSlider>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Carousel3d]
+      imports: [YoutubeSlider]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Carousel3d);
+    fixture = TestBed.createComponent(YoutubeSlider);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

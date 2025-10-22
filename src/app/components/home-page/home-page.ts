@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import SchoolIcon from '@mui/icons-material/School';
+import { HomeHeroSection } from '../home-hero-section/home-hero-section';
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [HomeHeroSection],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
