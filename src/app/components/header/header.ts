@@ -16,7 +16,7 @@ export class Header {
     this.isMenuOpen = !this.isMenuOpen;
   }
   async goHome(event: MouseEvent) {
-event.preventDefault(); // منع التنقل التلقائي
+    event.preventDefault(); // منع التنقل التلقائي
 
     const currentUrl = this.router.url.split('#')[0];
 
@@ -29,8 +29,7 @@ event.preventDefault(); // منع التنقل التلقائي
 
       // نعمل scroll لأعلى الصفحة
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    else {
+    } else {
       // ✅ الحالة 2: لو أنا مش في /home
       // نعمل navigation جديد
       await this.router.navigate(['/home']);
@@ -38,7 +37,8 @@ event.preventDefault(); // منع التنقل التلقائي
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 200);
-  }}
+    }
+  }
 
   //   goHome() {
   //   if (this.router.url.startsWith('/home')) {

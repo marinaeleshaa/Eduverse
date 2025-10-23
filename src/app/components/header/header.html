@@ -1,7 +1,7 @@
 <!-- 🔹 Main navigation bar -->
 <!-- <nav class="bg-gradient-to-br from-violet-900 via-violet-700 to-violet-900 shadow-lg fixed w-full z-[99] "> -->
 <nav class="bg-violet-950 shadow-lg fixed w-full z-[99]">
-  <div class="w-[80%] flex flex-wrap items-center justify-between mx-auto p-2.5">
+  <div class="w-[80%] flex flex-wrap items-center justify-between mx-auto p-2">
     <!-- 🟢 Logo and brand name -->
     <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="logo.png" class="h-8" alt="Eduverse Logo" />
@@ -13,16 +13,16 @@
     <!-- 🔍 Search & mobile menu buttons -->
     <div class="flex md:order-2 items-center gap-2">
       <!-- Auth Buttons (Desktop) -->
-      <div class="hidden md:flex items-center gap-2 mr-3">
+      <div class="hidden lg:flex items-center gap-2 mr-3">
         <button
           routerLink="login"
-          class="px-4 py-2 text-sm font-medium text-green-300 hover:text-white border border-green-300 rounded-lg hover:bg-violet-800 transition-all cursor-pointer"
+          class="px-3 py-2 text-sm font-medium text-green-300 hover:text-white border border-green-300 rounded-lg hover:bg-violet-800 transition-all cursor-pointer"
         >
           Sign In
         </button>
         <button
           routerLink="signUp"
-          class="px-4 py-2 text-sm font-medium text-violet-900 bg-gradient-to-r from-green-200 to-green-300 rounded-lg hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
+          class="px-3 py-2 text-sm font-medium text-violet-900 bg-gradient-to-r from-green-200 to-green-300 rounded-lg hover:shadow-lg hover:scale-105 transition-all cursor-pointer"
         >
           Sign Up
         </button>
@@ -61,11 +61,11 @@
       <button
         type="button"
         (click)="toggleMenu()"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-green-300 rounded-lg md:hidden hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-green-300"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-green-300 rounded-lg lg:hidden hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-green-300"
       >
         <span class="sr-only">Open main menu</span>
         <svg
-          class="w-5 h-5"
+          class="w-4 h-4"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -86,7 +86,7 @@
     <div
       id="navbar-search"
       [ngClass]="{ hidden: !isMenuOpen, flex: isMenuOpen }"
-      class="md:items-center justify-between w-full flex-col md:flex md:w-auto md:order-1"
+      class="lg:items-center justify-between w-full flex-col lg:flex lg:w-auto lg:order-1"
     >
       <!-- Navigation links -->
       <ul
@@ -96,7 +96,7 @@
           <a
             routerLink="dashboard"
             routerLinkActive="before:!w-full before:!opacity-100 after:!scale-x-100 shadow-[0_2px_8px_rgba(139,92,246,0.2)] bg-gradient-to-r from-violet-500/10 to-green-300/10"
-            class="relative z-10 block py-3 px-5 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
+            class="relative z-10 block py-2 px-3 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
           >
             Dashboard
           </a>
@@ -107,7 +107,7 @@
             [routerLink]="['/home']"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="before:!w-full before:!opacity-100 after:!scale-x-100 shadow-[0_2px_8px_rgba(139,92,246,0.2)] bg-gradient-to-r from-violet-500/10 to-green-300/10"
-            class="cursor-pointer relative z-10 block py-3 px-5 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
+            class="cursor-pointer relative z-10 block py-2 px-3 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
           >
             Home
           </a>
@@ -116,7 +116,7 @@
           <a
             routerLink="about"
             routerLinkActive="before:!w-full before:!opacity-100 after:!scale-x-100 shadow-[0_2px_8px_rgba(139,92,246,0.2)] bg-gradient-to-r from-violet-500/10 to-green-300/10"
-            class="relative z-10 block py-3 px-5 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
+            class="relative z-10 block py-2 px-3 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
           >
             About
           </a>
@@ -125,7 +125,7 @@
           <a
             routerLink="services"
             routerLinkActive="before:!w-full before:!opacity-100 after:!scale-x-100 shadow-[0_2px_8px_rgba(139,92,246,0.2)] bg-gradient-to-r from-violet-500/10 to-green-300/10"
-            class="relative z-10 block py-3 px-5 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
+            class="relative z-10 block py-2 px-3 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
           >
             Services
           </a>
