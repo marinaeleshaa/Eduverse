@@ -1,7 +1,7 @@
 <!-- 🔹 Main navigation bar -->
 <!-- <nav class="bg-gradient-to-br from-violet-900 via-violet-700 to-violet-900 shadow-lg fixed w-full z-[99] "> -->
 <nav class="bg-violet-950 shadow-lg fixed w-full z-[99]">
-  <div class=" w-[80%] flex flex-wrap items-center justify-between mx-auto p-2.5">
+  <div class="w-[80%] flex flex-wrap items-center justify-between mx-auto p-2.5">
     <!-- 🟢 Logo and brand name -->
     <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="logo.png" class="h-8" alt="Eduverse Logo" />
@@ -103,11 +103,11 @@
         </li>
         <li>
           <a
-          routerLink="home"
-            
+            (click)="goHome($event)"
+            [routerLink]="['/home']"
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="before:!w-full before:!opacity-100 after:!scale-x-100 shadow-[0_2px_8px_rgba(139,92,246,0.2)] bg-gradient-to-r from-violet-500/10 to-green-300/10"
-            class="relative z-10 block py-3 px-5 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
+            class="cursor-pointer relative z-10 block py-3 px-5 rounded-md text-white overflow-hidden font-medium transition-all duration-300 before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:opacity-0 before:bg-gradient-to-r before:from-violet-500 before:to-green-300 before:transition-all before:duration-500 before:ease-out hover:before:w-full hover:before:opacity-100 hover:text-gray-200 hover:bg-white/5 after:absolute after:left-0 after:top-0 after:w-full after:h-full after:scale-x-0 after:origin-left after:bg-gradient-to-r after:from-violet-500/5 after:via-transparent after:to-green-300/5 after:transition-all after:duration-300 after:ease-out after:-z-10 hover:after:scale-x-100 [&.active]:before:h-1"
           >
             Home
           </a>

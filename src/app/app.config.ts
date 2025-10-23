@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
       routes,
       withEnabledBlockingInitialNavigation(),
       withInMemoryScrolling({
-        scrollPositionRestoration: 'enabled', // ✅ يرجع مكان الصفحة عند الرجوع
+        scrollPositionRestoration: 'disabled', // ✅ يرجع مكان الصفحة عند الرجوع
         anchorScrolling: 'disabled', // ✅ يفعّل الـ scroll للـ #fragment
       })
     ),

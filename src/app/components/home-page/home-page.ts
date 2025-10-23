@@ -15,25 +15,28 @@ export class HomePage implements AfterViewInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngAfterViewInit() {
-    // ✅ ننتظر التنقّل بالكامل (حتى لو الصفحة اتحمّلت من صفحة تانية)
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        const fragment = this.route.snapshot.fragment;
-        if (fragment) {
+        // 🧠 ناخد الفراجمنت من الـ window مباشرة
+        const fragment = window.location.hash.replace('#', '');
+
+        if (fragment === 'contactForm') {
+          // ✅ لو في fragment فعلاً، ننزل عليه
           setTimeout(() => {
             const element = document.getElementById(fragment);
             if (element) {
-              const yOffset = -80; // 👈 مسافة لتعويض الـ navbar الثابت (عدّليها لو محتاجة)
+              const yOffset = -80; // مسافة للـ navbar
               const y =
-                element.getBoundingClientRect().top + window.scrollY + yOffset;
-
-              window.scrollTo({
-                top: y,
-                behavior: 'smooth', // ✅ scroll ناعم فعليًا
-              });
+                element.getBoundingClientRect().top +
+                window.scrollY +
+                yOffset;
+              window.scrollTo({ top: y, behavior: 'smooth' });
             }
-          }, 400); // delay بسيط عشان العناصر تكون ظهرت فعلًا
+          }, 400);
+        } else {
+          // ✅ مفيش fragment → نرجع لأعلى الصفحة
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
   }

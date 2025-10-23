@@ -11,5 +11,5 @@ import { FlyingContactBtn } from './components/flying-contact-btn/flying-contact
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Cartella');
+  protected readonly title = signal('Eduverse');
 }
