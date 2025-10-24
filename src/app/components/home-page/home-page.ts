@@ -1,13 +1,15 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { HomeHeroSection } from '../home-hero-section/home-hero-section';
+import { HomeHeroSection } from '../home-page/home sections/home-hero-section/home-hero-section';
 import { ContactUs } from '../contact-us/contact-us';
-import { Waves } from '../waves/waves';
+import { Waves } from '../utils/waves/waves';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { Our } from "../about-page/about sections/our/our";
+import { OurStoryComponent } from '../about-page/about sections/our-story/our-story.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [HomeHeroSection, ContactUs, Waves],
+  imports: [HomeHeroSection, ContactUs, Waves, Our, OurStoryComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
