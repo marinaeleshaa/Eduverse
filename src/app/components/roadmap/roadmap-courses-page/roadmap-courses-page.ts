@@ -10,13 +10,13 @@ interface TimelineItem {
 }
 
 @Component({
-  selector: 'app-courses-page',
+  selector: 'app-roadmap-courses-page',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  templateUrl: './courses-page.html',
-  styleUrl: './courses-page.css',
+  templateUrl: './roadmap-courses-page.html',
+  styleUrl: './roadmap-courses-page.css',
 })
-export class CoursesPage {
+export class RoadmapCoursesPage {
   timelineData: TimelineItem[] = [
     {
       id: 1,

@@ -1,0 +1,11 @@
+.concave-dip-shape {
+  position: relative;
+  /*
+   * M 0 0: Start at top-left corner (0, 0)
+   * Q 50% 80px: Control point is 50% width and 80px DOWN (this creates the dip).
+   * 100% 0: End at top-right corner (100% width, 0 height).
+   * V 100% H 0 Z: Creates the rest of the standard rectangle shape.
+   * This path *keeps* the area below the curve and *cuts away* the area above the curve.
+   */
+  clip-path: path('M 0 0 Q 50% 30px, 100% 0 V 100% H 0 Z');
+}

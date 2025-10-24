@@ -1,0 +1,84 @@
+
+<div class="min-h-screen font-sans p-6 sm:p-10 pt-0">
+  <div class="shadow-2xl overflow-hidden">
+    <div class="pt-20 pb-10 px-6 sm:px-10">
+      <h2
+        class="text-2xl md:text-4xl lg:text-5xl font-extrabold text-violet-950 mb-8 text-center tracking-tight"
+      >
+        Explore Learning Tracks
+      </h2>
+
+      <div class="mb-10 max-w-xl mx-auto">
+        <label for="course-search" class="sr-only">Search Courses</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg
+              class="h-5 w-5 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.31l3.593 3.593a1 1 0 01-1.414 1.414l-3.593-3.593A7 7 0 012 9z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="course-search"
+            placeholder="Search by course name or category..."
+            [(ngModel)]="searchTerm"
+            (ngModelChange)="filterCourses()"
+            class="block w-full border border-gray-300 rounded-lg py-3 pl-10 pr-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition duration-150 ease-in-out sm:text-lg"
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-10">
+        @for (course of filteredCourses; track course.id) {
+        <a
+          [routerLink]="['/courses', course.id]"
+          class="block h-64 relative overflow-hidden group transition duration-200 ease-in-out transform hover:scale-[1.05] shadow-xl hover:shadow-2xl rounded-lg"
+        >
+          <img
+            class="h-full w-full object-cover object-center"
+            [src]="course.imageSrc"
+            [alt]="'Image for ' + course.name"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x400/312e81/ffffff?text=Course+Image';"
+          />
+
+          <div
+            class="absolute bg-white w-[90%] h-[30%] bottom-5 left-[5%] p-3 rounded-lg flex items-center justify-between shadow-lg"
+          >
+            <div class="flex-grow pr-2">
+              <p class="text-xs text-violet-500 font-semibold">{{ course.category }}</p>
+              <h1 class="text-xl text-gray-900 font-extrabold line-clamp-1 mt-1">
+                {{ course.name }}
+              </h1>
+            </div>
+
+            <div
+              class="size-10 p-1 rounded-full flex-shrink-0 bg-violet-600 text-white group-hover:bg-white group-hover:text-violet-600 group-hover:border-violet-600 border-2 border-transparent transition-colors duration-200 flex items-center justify-center shadow-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-6"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </a>
+        }
+      </div>
+    </div>
+  </div>
+</div>

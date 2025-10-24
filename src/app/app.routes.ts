@@ -8,8 +8,10 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { CoursesDash } from './components/courses-dash/courses-dash';
 import { RoadmapMainPage } from './components/roadmap/roadmap-main-page/roadmap-main-page';
 import { TracksPage } from './components/roadmap/tracks-page/tracks-page';
-import { CoursesPage } from './components/roadmap/courses-page/courses-page';
 import { CoursedetailsPage } from './components/roadmap/coursedetails-page/coursedetails-page';
+import { CoursesMainPage } from './components/courses/courses-main-page/courses-main-page';
+import { RoadmapCoursesPage } from './components/roadmap/roadmap-courses-page/roadmap-courses-page';
+import { CoursesPage } from './components/courses/courses-page/courses-page';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -23,14 +25,21 @@ export const routes: Routes = [
   },
   { path: 'home', component: HomePage },
   { path: 'about', component: AboutPage },
+  { path: 'courses', component: CoursesMainPage,
+    children: [
+      { path: '', redirectTo: 'allcourses', pathMatch: 'full' },
+      { path: 'allcourses', component:  CoursesPage},
+      { path: ':courseId', component: CoursedetailsPage },
+    ],
+   },
   {
     path: 'roadmap',
     component: RoadmapMainPage,
     children: [
       { path: '', redirectTo: 'tracks', pathMatch: 'full' },
       { path: 'tracks', component: TracksPage },
-      {path: 'courses',component: CoursesPage},
-      { path: 'courseId', component: CoursedetailsPage },
+      {path: 'courses',component: RoadmapCoursesPage},
+      { path: ':courseId', component: CoursedetailsPage },
     ],
   },
   { path: 'login', component: LoginPage },

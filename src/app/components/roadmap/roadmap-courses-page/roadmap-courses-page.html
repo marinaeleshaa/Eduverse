@@ -34,7 +34,11 @@
       <!-- Card Grid Container -->
       <div class="pt-10">
         @for (item of timelineData; track item.id; let isEven = $even) {
-        <a routerLink="/roadmap/courseId">
+        <a 
+        [routerLink]="['/roadmap', item.id]"
+        
+        >
+
           <div
             class="mb-12 flex justify-between items-center w-full relative md:mb-8"
             [ngClass]="{
