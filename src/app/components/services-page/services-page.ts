@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Carousel3dComponent } from '../carousel3d/carousel3d';
+import { YoutubeSlider } from "../youtube-slider/youtube-slider";
+import { HeadSection } from "../head-section/head-section";
 
 @Component({
   selector: 'app-services-page',
-  imports: [Carousel3dComponent],
+  imports: [YoutubeSlider, HeadSection],
   templateUrl: './services-page.html',
   styleUrl: './services-page.css'
 })
