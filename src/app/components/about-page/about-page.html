@@ -1,15 +1,18 @@
-<div class="bg-white">
+<div class="">
   <!-- Hero Section -->
-  
-  <div class="w-full relative h-[400px]">
-    <img src="hero.png" class="w-full h-full" alt="" />
-    <div class="absolute top-[30%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-      <p class="text-white text-5xl animate-pulse uppercase">About Eduverse</p>
-    </div>
-  </div>
+  <app-head-section
+    [title]="'About Eduverse'"
+    [subtitle]="'Education is the most powerful weapon which you can use to change the world. - Nelson Mandela'"
+  >
+</app-head-section>
 
   <!-- Content Sections -->
-  <div class="">
-    <app-about></app-about>
+  <div class="w-[80%] mx-auto ">
+    <app-our></app-our>
+    <app-our-mission></app-our-mission>
+    <app-our-story></app-our-story>
+    <app-our-team></app-our-team>
+    <app-our-values></app-our-values>
+    <app-why-choose-us></app-why-choose-us>
   </div>
 </div>
