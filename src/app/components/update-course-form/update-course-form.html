@@ -1,0 +1,229 @@
+@if (isModalOpen) {
+<div
+  class="fixed inset-0 bg-black/50 flex items-center justify-center z-[100]"
+  (click)="closeModal()"
+>
+  <div
+    class="bg-white/80 backdrop-blur-3xl rounded-lg shadow-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-semibold text-violet-950">Update Course</h3>
+      <button (click)="closeModal()" class="text-gray-600 hover:text-gray-900 cursor-pointer">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <form [formGroup]="courseForm" (ngSubmit)="updateCourse()" class="space-y-4">
+      <!-- Course Name -->
+      <div>
+        <label class="block text-sm font-medium text-violet-950 mb-2">Course Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          placeholder="Enter course name"
+        />
+        @if (f['name'].invalid && (f['name'].dirty || f['name'].touched)) {
+        <p class="text-red-600 text-sm mt-1">
+          @if (f['name'].errors?.['required']) { Name is required } @else if
+          (f['name'].errors?.['minlength']) { Minimum 3 characters }
+        </p>
+        }
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-sm font-medium text-violet-950 mb-2">Description</label>
+        <input
+          type="text"
+          formControlName="description"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          placeholder="Enter description"
+        />
+        @if (f['description'].invalid && (f['description'].dirty || f['description'].touched)) {
+        <p class="text-red-600 text-sm mt-1">
+          @if (f['description'].errors?.['required']) { Description is required } @else if
+          (f['description'].errors?.['minlength']) { Minimum 10 characters }
+        </p>
+        }
+      </div>
+
+      <!-- Image URL -->
+      <div>
+        <label class="block text-sm font-medium text-violet-950 mb-2">Image URL</label>
+        <input
+          type="url"
+          formControlName="imgUrl"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          placeholder="Enter image URL"
+        />
+        @if (f['imgUrl'].invalid && (f['imgUrl'].dirty || f['imgUrl'].touched)) {
+        <p class="text-red-600 text-sm mt-1">
+          @if (f['imgUrl'].errors?.['required']) { Image URL is required } @else if
+          (f['imgUrl'].errors?.['pattern']) { Must be a valid http/https URL }
+        </p>
+        }
+      </div>
+
+      <!-- Price -->
+      <div>
+        <label class="block text-sm font-medium text-violet-950 mb-2">Price</label>
+        <input
+          type="number"
+          formControlName="price"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          placeholder="0.00"
+        />
+        @if (f['price'].invalid && (f['price'].dirty || f['price'].touched)) {
+        <p class="text-red-600 text-sm mt-1">
+          @if (f['price'].errors?.['required']) { Price is required } @else if
+          (f['price'].errors?.['min']) { Must be greater than 0 }
+        </p>
+        }
+      </div>
+
+      <!-- Hours -->
+      <div>
+        <label class="block text-sm font-medium text-violet-950 mb-2">Hours</label>
+        <input
+          type="number"
+          formControlName="hours"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          placeholder="Course hours"
+        />
+        @if (f['hours'].invalid && (f['hours'].dirty || f['hours'].touched)) {
+        <p class="text-red-600 text-sm mt-1">
+          @if (f['hours'].errors?.['required']) { Hours are required } @else if
+          (f['hours'].errors?.['min']) { Minimum 1 hour }
+        </p>
+        }
+      </div>
+
+      <!-- Category -->
+      <div>
+        <label class="block text-sm font-medium text-violet-950 mb-2">Category</label>
+        <select
+          formControlName="category"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none"
+        >
+          <option value="" disabled>Select a category</option>
+          <option value="web-development">Web Development</option>
+          <option value="data-science">Data Science</option>
+          <option value="graphic-design">Graphic Design</option>
+        </select>
+        @if (f['category'].invalid && (f['category'].dirty || f['category'].touched)) {
+        <p class="text-red-600 text-sm mt-1">Category is required</p>
+        }
+      </div>
+
+      <!-- Outline Section -->
+      <div class="bg-white/30 p-5 rounded-lg">
+        <p class="text-center text-lg text-violet-950 font-bold mb-4">Course Outline</p>
+
+        <div class="flex flex-col gap-3 mb-3">
+          <input
+            type="text"
+            formControlName="outlineTitle"
+            placeholder="Outline Title"
+            class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-violet-900 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          />
+          <input
+            type="text"
+            formControlName="outlineSubtitle"
+            placeholder="Outline Subtitle"
+            class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-violet-900 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          />
+          <button
+            type="button"
+            (click)="addOutlineItem()"
+            class="bg-violet-700 text-white px-5 py-2 rounded-lg hover:bg-violet-800 transition duration-300"
+          >
+            Add
+          </button>
+        </div>
+
+        @if (outlineArray.controls.length > 0) { @for (item of outlineArray.controls; track $index)
+        {
+        <div
+          class="flex justify-between items-start bg-white/70 border border-violet-100 rounded-lg p-3 mb-2"
+        >
+          <div>
+            <h4 class="font-semibold text-violet-950 text-sm md:text-base">
+              {{ item.value.title }}
+            </h4>
+            <p class="text-sm text-violet-800">{{ item.value.subtitle }}</p>
+          </div>
+          <button
+            type="button"
+            (click)="removeOutlineItem($index)"
+            class="text-red-500 hover:text-red-700 font-bold text-sm ml-2"
+          >
+            ✕
+          </button>
+        </div>
+        } } @else {
+        <p class="text-sm text-gray-600 text-center">No outline items added yet.</p>
+        }
+      </div>
+
+      <!-- Conclusion Section -->
+      <div class="bg-white/30 p-5 rounded-lg mt-6">
+        <p class="text-center text-lg text-violet-950 font-bold mb-4">Course Conclusion</p>
+
+        <div class="flex flex-col md:flex-row gap-3 mb-3">
+          <input
+            type="text"
+            formControlName="conclusionText"
+            placeholder="Enter a conclusion point"
+            class="flex-1 px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-violet-900 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none placeholder:text-gray-500/50"
+          />
+          <button
+            type="button"
+            (click)="addConclusionItem()"
+            class="bg-violet-700 text-white px-5 py-2 rounded-lg hover:bg-violet-800 transition duration-300"
+          >
+            Add
+          </button>
+        </div>
+
+        @if (conclusionArray.controls.length > 0) { @for (item of conclusionArray.controls; track
+        $index) {
+        <div
+          class="flex justify-between items-center bg-white/70 border border-violet-100 rounded-lg p-3 mb-2"
+        >
+          <p class="text-violet-950 flex-1 pr-2">{{ item.value }}</p>
+          <button
+            type="button"
+            (click)="removeConclusionItem($index)"
+            class="text-red-500 hover:text-red-700 font-bold text-sm"
+          >
+            ✕
+          </button>
+        </div>
+        } } @else {
+        <p class="text-sm text-gray-600 text-center">No conclusion points added yet.</p>
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex gap-3 mt-6">
+        <button
+          type="submit"
+          [disabled]="courseForm.invalid"
+          class="flex-1 px-4 py-2 bg-violet-700 hover:bg-violet-800 text-white rounded-lg font-medium focus:ring-4 focus:ring-violet-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Update Course
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+}
