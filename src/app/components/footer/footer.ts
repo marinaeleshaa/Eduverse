@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './footer.html',
   styles: [],
 })
@@ -18,15 +18,15 @@ export class Footer {
     });
   }
 
-get footerClasses() {
-  return [
-    'bg-violet-950',
-    'text-white',
-    'mt-auto',
-    this.currentUrl.includes('/home') ? "" : '[clip-path:ellipse(65%_52%_at_51%_70%)] pt-30 bg-gradient-to-br from-violet-950 via-violet-900 to-violet-950' ,
-    this.currentUrl.includes("/dashboard") ? 'hidden' : ''
-  ].join(' ');
-}
-
-
+  get footerClasses() {
+    return [
+      'bg-violet-950',
+      'text-white',
+      'mt-auto',
+      this.currentUrl.includes('/home')
+        ? ''
+        : 'pt-5 bg-gradient-to-br from-violet-950 via-violet-900 to-violet-950',
+      this.currentUrl.includes('/dashboard') ? 'hidden' : '',
+    ].join(' ');
+  }
 }
