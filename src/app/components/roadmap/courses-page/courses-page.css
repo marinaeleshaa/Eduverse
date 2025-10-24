@@ -1,0 +1,52 @@
+.convex-top-shape {
+  position: relative;
+  border-top-left-radius: 50% 125px;
+  border-top-right-radius: 50% 125px;
+  overflow: hidden;
+}
+.timeline-wave-line {
+  width: 4px; 
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+      45deg,
+      #6d28d9 0, #6d28d9 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(-45deg, #6d28d9 0, #6d28d9 2px, transparent 2px, transparent 4px);
+  background-size: 100% 12px; 
+  opacity: 0.6;
+}
+@media (max-width: 500px) {
+  .wrap > div {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 2rem;
+  }
+
+  .wrap > div > .w-0 {
+    display: none;
+  }
+
+  .wrap > div > .w-full {
+    width: 100% !important;
+    margin-left: 1.5rem; 
+  }
+  .z-20 {
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    transform: translateX(0);
+  }
+  /* Mobile vertical line (still straight, for stability) */
+  .wrap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    width: 2px;
+    height: 100%;
+    background-color: rgb(76 29 149 / 0.3); 
+  }
+}

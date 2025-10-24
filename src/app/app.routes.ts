@@ -1,12 +1,15 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './components/home-page/home-page';
 import { AboutPage } from './components/about-page/about-page';
-import { ServicesPage } from './components/services-page/services-page';
 import { NotFoundPage } from './components/not-found-page/not-found-page';
 import { LoginPage } from './components/login-page/login-page';
 import { SignUpPage } from './components/sign-up-page/sign-up-page';
 import { Dashboard } from './components/dashboard/dashboard';
 import { CoursesDash } from './components/courses-dash/courses-dash';
+import { RoadmapMainPage } from './components/roadmap/roadmap-main-page/roadmap-main-page';
+import { TracksPage } from './components/roadmap/tracks-page/tracks-page';
+import { CoursesPage } from './components/roadmap/courses-page/courses-page';
+import { CoursedetailsPage } from './components/roadmap/coursedetails-page/coursedetails-page';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -20,7 +23,16 @@ export const routes: Routes = [
   },
   { path: 'home', component: HomePage },
   { path: 'about', component: AboutPage },
-  { path: 'services', component: ServicesPage },
+  {
+    path: 'roadmap',
+    component: RoadmapMainPage,
+    children: [
+      { path: '', redirectTo: 'tracks', pathMatch: 'full' },
+      { path: 'tracks', component: TracksPage },
+      {path: 'courses',component: CoursesPage},
+      { path: 'courseId', component: CoursedetailsPage },
+    ],
+  },
   { path: 'login', component: LoginPage },
   { path: 'signUp', component: SignUpPage },
   { path: '**', component: NotFoundPage },
