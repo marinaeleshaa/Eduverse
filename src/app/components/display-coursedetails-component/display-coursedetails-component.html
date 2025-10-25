@@ -1,14 +1,8 @@
-<div class="min-h-screen p-6 sm:p-10 pt-0">
-  <div
-    [ngClass]="handleResponsive()"
-    class="shadow-2xl rounded-b-xl convex-top-shape relative bg-white overflow-hidden"
-  >
-    <div class="pt-15 md:pt-30 pb-10 px-6 sm:px-10">
-      <!-- header -->
-      <div class="flex items-center justify-between mb-12 sm:mb-16">
+ <!-- header -->
+      <div class="flex items-center justify-between mb-12 sm:mb-16 ">
         <button
           (click)="goBack()"
-          class="relative ms-3 text-violet-900 border-2 rounded-full p-2 md:p-5 border-violet-900 hover:cursor-pointer hover:text-violet-500 hover:border-violet-500 transition duration-150 whitespace-nowrap"
+          class="relative ms-3  text-violet-900 border-2 rounded-full p-2 md:p-5 border-violet-900 hover:cursor-pointer hover:text-violet-500 hover:border-violet-500 transition duration-150 whitespace-nowrap"
         >
           <svg
             class="md:w-7 md:h-7 w-3 h-3 left-0 top-0 absolute translate-1/4"
@@ -31,21 +25,22 @@
           Course Name
         </h2>
         <button
-          class="relative me-3 text-violet-900 border-2 rounded-full p-2 md:p-5 border-violet-900 hover:cursor-pointer hover:text-violet-500 hover:border-violet-500 transition duration-150 whitespace-nowrap group"
+          class="relative me-3  text-violet-900 border-2 rounded-full p-2 md:p-5 border-violet-900 hover:cursor-pointer hover:text-violet-500 hover:border-violet-500 transition duration-150 whitespace-nowrap group"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="md:w-7 md:h-7 w-3 h-3 left-0 top-0 absolute translate-1/4 transition duration-150 group-hover:fill-violet-600 group-hover:stroke-violet-600"
-            fill="none"
+            class="lucide lucide-clock-plus-icon lucide-clock-plus md:w-7 md:h-7 w-3 h-3 left-0 top-0 absolute translate-1/5 transition duration-150 group-hover:stroke-violet-600"
             viewBox="0 0 24 24"
+            fill="none"
             stroke="currentColor"
             stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            />
+            <path d="M12 6v6l3.644 1.822" />
+            <path d="M16 19h6" />
+            <path d="M19 16v6" />
+            <path d="M21.92 13.267a10 10 0 1 0-8.653 8.653" />
           </svg>
         </button>
       </div>
@@ -417,6 +412,3 @@
           </div>
         </div>
       </section>
-    </div>
-  </div>
-</div>
