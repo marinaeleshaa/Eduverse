@@ -1,65 +1,6 @@
-// import { Component, EventEmitter, Output } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-// import { v4 as uuidv4 } from 'uuid';
-// import { ICourse } from '../../Interfaces/icourse';
-// import { CourseService } from '../../services/course-service';
-
-// @Component({
-//   selector: 'app-add-course-form',
-//   standalone: true,
-//   imports: [CommonModule, ReactiveFormsModule],
-//   templateUrl: './add-course-form.html',
-//   styleUrl: './add-course-form.css',
-// })
-// export class AddCourseForm {
-//   isModalOpen = false;
-//   courseForm!: FormGroup;
-
-//   @Output() sendEvent = new EventEmitter();
-
-//   constructor(private fb: FormBuilder , private courseService:CourseService) {
-//     this.courseForm = this.fb.group({
-//       name: ['', [Validators.required, Validators.minLength(3)]],
-//       description: ['', [Validators.required, Validators.minLength(10)]],
-//       imgUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]],
-//       price: [null, [Validators.required, Validators.min(1)]],
-//       hours: [null, [Validators.required, Validators.min(1)]],
-//       rate: [null, [Validators.required, Validators.min(1), Validators.max(10)]],
-//     });
-//   }
-
-//   openModal() {
-//     this.isModalOpen = true;
-//   }
-
-//   closeModal() {
-//     this.isModalOpen = false;
-//   }
-
-//   addCourse() {
-//     if (this.courseForm.invalid) {
-//       this.courseForm.markAllAsTouched();
-//       return;
-//     }
-
-//     const courseData: ICourse = { ...this.courseForm.value, id: uuidv4() };
-//     this.courseService.addCourse(courseData)
-//     this.sendEvent.emit(courseData);
-//     this.courseForm.reset();
-//     this.closeModal();
-//   }
-
-//   // Getter for easy access in template
-//   get f() {
-//     return this.courseForm.controls;
-//   }
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 import { ICourse } from '../../Interfaces/icourse';
 import { CourseService } from '../../services/course-service';
@@ -89,36 +30,104 @@ export class AddCourseForm implements OnInit {
       imgUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]],
       price: [null, [Validators.required, Validators.min(1)]],
       hours: [null, [Validators.required, Validators.min(1)]],
-      rate: [null, [Validators.required, Validators.min(1), Validators.max(10)]],
+      category: ['', [Validators.required]],
+      targetAudience: ['', [Validators.required]],
+
+      // Outline
+      outline: this.fb.array([]),
+      outlineTitle: [''],
+      outlineSubtitle: [''],
+
+      // Conclusion
+      conclusion: this.fb.array([]),
+      conclusionText: [''],
     });
 
-    // نتابع حالة المودال من السيرفس
-    this.formService.isModalOpen$.subscribe((state) => {
+    this.formService.addModal$.subscribe((state) => {
       this.isModalOpen = state;
     });
   }
 
-  openModal() {
-    this.formService.openModal();
+  get f() {
+    return this.courseForm.controls;
   }
 
-  closeModal() {
-    this.formService.closeModal();
+  get outlineArray(): FormArray {
+    return this.courseForm.get('outline') as FormArray;
   }
 
-  addCourse() {
+  get conclusionArray(): FormArray {
+    return this.courseForm.get('conclusion') as FormArray;
+  }
+
+  addOutlineItem(): void {
+    const title = this.f['outlineTitle'].value.trim();
+    const subtitle = this.f['outlineSubtitle'].value.trim();
+
+    if (!title || !subtitle) return;
+
+    const newOutline = this.fb.group({
+      title: [title, Validators.required],
+      subtitle: [subtitle, Validators.required],
+    });
+
+    this.outlineArray.push(newOutline);
+    this.f['outlineTitle'].reset();
+    this.f['outlineSubtitle'].reset();
+  }
+
+  removeOutlineItem(index: number): void {
+    this.outlineArray.removeAt(index);
+  }
+
+  addConclusionItem(): void {
+    const text = this.f['conclusionText'].value.trim();
+    if (!text) return;
+
+    this.conclusionArray.push(this.fb.control(text, Validators.required));
+    this.f['conclusionText'].reset();
+  }
+
+  removeConclusionItem(index: number): void {
+    this.conclusionArray.removeAt(index);
+  }
+
+  addCourse(): void {
     if (this.courseForm.invalid) {
       this.courseForm.markAllAsTouched();
       return;
     }
 
-    const courseData: ICourse = { ...this.courseForm.value, id: uuidv4() };
+    const outlineData = this.outlineArray.value.map((item: any) => ({
+      title: item.title,
+      subtitle: item.subtitle,
+    }));
+
+    const conclusionData = this.conclusionArray.value;
+
+    const courseData: ICourse = {
+      ...this.courseForm.value,
+      id: uuidv4(),
+      outline: outlineData,
+      conclusion: conclusionData,
+    };
+
+
+
+
+
     this.courseService.addCourse(courseData);
     this.courseForm.reset();
+    this.outlineArray.clear();
+    this.conclusionArray.clear();
     this.closeModal();
   }
 
-  get f() {
-    return this.courseForm.controls;
+  openModal() {
+    this.formService.openAddModal();
+  }
+
+  closeModal() {
+    this.formService.closeAddModal();
   }
 }

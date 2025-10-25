@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ICourse } from '../../Interfaces/icourse';
-import { CourseService } from '../../services/course-service';
+import { CourseService } from '../../../../services/course-service';
+import { FormService } from '../../../../services/form-service';
+import { ICourse } from '../../../../Interfaces/icourse';
+
 
 @Component({
   selector: 'app-course-card',
@@ -11,7 +13,7 @@ import { CourseService } from '../../services/course-service';
 export class CourseCard {
   // courses: ICourse[] = [];
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService , private formService: FormService) {}
 
   // use getters to update the ui from service
   get courses() {
@@ -40,5 +42,12 @@ export class CourseCard {
 
   handleDelete(id: string) {
     this.courseService.deleteCourse(id);
+  }
+
+  @Input() course!: ICourse;
+
+
+  openUpdateForm(course: ICourse) {
+    this.formService.openEditModal(course);
   }
 }
