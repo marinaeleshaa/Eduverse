@@ -1,9 +1,3 @@
-.convex-top-shape {
-  position: relative;
-  border-top-left-radius: 50% 125px;
-  border-top-right-radius: 50% 125px;
-  overflow: hidden;
-}
 .timeline-wave-line {
   width: 4px; 
   background-color: transparent;

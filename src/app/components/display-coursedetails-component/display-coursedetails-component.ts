@@ -3,15 +3,14 @@ import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-coursedetails-page',
+  selector: 'app-display-coursedetails-component',
   imports: [CommonModule,ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './coursedetails-page.html',
-  styleUrl: './coursedetails-page.css',
+  templateUrl: './display-coursedetails-component.html',
+  styleUrl: './display-coursedetails-component.css'
 })
-export class CoursedetailsPage {
-
-  // toggle display button
+export class DisplayCoursedetailsComponent {
+ // toggle display button
   isCollapsed: boolean = true;
   isListCollapsed: boolean = true;
 
@@ -79,13 +78,4 @@ export class CoursedetailsPage {
     });
     this.rating.set(0);
   }
-
-  handleResponsive(){
-    if(this.router.url.includes("courses")){
-      return `rounded-xl`
-    }else{
-      return `rounded-tl-[50%_70px] rounded-tr-[50%_70px] md:rounded-tl-[50%_125px] md:rounded-tr-[50%_125px]`
-    }
-  }
-
 }

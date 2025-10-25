@@ -1,0 +1,7 @@
+
+@media screen and (max-width: 800px) {
+  .convex-top-shape {
+    border-top-left-radius: 50% 70px;
+    border-top-right-radius: 50% 70px;
+  }
+}

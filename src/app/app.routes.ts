@@ -7,12 +7,13 @@ import { SignUpPage } from './components/sign-up-page/sign-up-page';
 import { Dashboard } from './components/dashboard/dashboard';
 import { RoadmapMainPage } from './components/roadmap/roadmap-main-page/roadmap-main-page';
 import { TracksPage } from './components/roadmap/tracks-page/tracks-page';
-import { CoursedetailsPage } from './components/roadmap/coursedetails-page/coursedetails-page';
+import { CoursedetailsPage } from './components/courses/coursedetails-page/coursedetails-page';
 import { CoursesMainPage } from './components/courses/courses-main-page/courses-main-page';
 import { RoadmapCoursesPage } from './components/roadmap/roadmap-courses-page/roadmap-courses-page';
 import { CoursesPage } from './components/courses/courses-page/courses-page';
 import { CoursesDash } from './components/dashboard/dashboard sections/courses-dash/courses-dash';
 import { loginAuthGuard } from './guards/login-auth-guard';
+import { RoadmapCoursedetailsPage } from './components/roadmap/roadmap-coursedetails-page/roadmap-coursedetails-page';
 import { loginProtectedGuard } from './guards/login-protected-guard';
 import { dashboardGuard } from './guards/dashboardGuard';
 
@@ -44,7 +45,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'tracks', pathMatch: 'full' },
       { path: 'tracks', component: TracksPage },
       {path: 'courses',component: RoadmapCoursesPage},
-      { path: ':courseId', component: CoursedetailsPage },
+      { path: ':courseId', component: RoadmapCoursedetailsPage },
     ],
     canActivate:[loginAuthGuard]
   },
