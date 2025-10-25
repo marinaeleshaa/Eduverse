@@ -1,0 +1,200 @@
+<div
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8 bg-gradient-to-b from-slate-50 to-purple-50 rounded-3xl w-[95%] max-w-[1400px] mx-auto"
+>
+  @if(courses.length > 0){ @for (course of courses; track $index) {
+  <div
+    class="group relative flex flex-col rounded-3xl overflow-hidden h-[470px] cursor-pointer transition-all duration-700 hover:duration-300 shadow-md"
+  >
+    <!-- Card Background with Dynamic Gradient -->
+    <div class="absolute inset-0 bg-white rounded-3xl -z-20"></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-purple-100/30 rounded-3xl -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+    ></div>
+
+    <!-- Animated Border Gradient -->
+    <div
+      class="absolute inset-0 rounded-3xl p-[2px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-purple-400 via-green-400 to-purple-400 rounded-3xl opacity-40"
+      ></div>
+    </div>
+    <div class="absolute inset-[2px] bg-white rounded-3xl -z-10"></div>
+
+    <!-- Premium Shadow on Hover -->
+    <div
+      class="absolute -inset-4 bg-gradient-to-r from-purple-400/0 via-purple-300/0 to-pink-400/0 blur-2xl -z-20 opacity-0 group-hover:opacity-30 transition-all duration-700 group-hover:shadow-2xl"
+    ></div>
+
+    <!-- Image Container -->
+    <div
+      class="relative shrink-0 h-52 w-full overflow-hidden rounded-t-3xl bg-gradient-to-br from-slate-900 to-slate-800"
+    >
+      <img
+        class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+        src="{{ course.imgUrl }}"
+        alt="{{ course.name }}"
+      />
+      <!-- Overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/20 to-transparent"
+      ></div>
+      <div
+        class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-purple-500/20 to-green-500/20"
+      ></div>
+
+      <!-- Floating Badge with Animation -->
+      <!-- <div class="absolute top-4 right-4 z-20">
+        <div class="relative flex items-center justify-center">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"
+          ></div>
+          <div
+            class="relative bg-gradient-to-br from-amber-300 to-orange-400 px-4 py-2 rounded-2xl shadow-xl"
+          >
+            <span class="text-sm font-black text-white drop-shadow">⭐ TOP</span>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- Content Container -->
+    <div class="flex flex-col flex-grow p-4 space-y-2">
+      <!-- Title with Underline Effect -->
+      <div class="relative">
+        <h3
+          class="text-2xl font-black text-slate-900 line-clamp-1 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:to-green-600 transition-all duration-500 break-words"
+        >
+          {{ course.name }}
+        </h3>
+        <div
+          class="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-purple-500 to-green-500 w-0 group-hover:w-full transition-all duration-700"
+        ></div>
+      </div>
+
+      <!-- Category -->
+      <span
+        class="inline-block my-2 px-3 py-1 text-xs font-semibold text-violet-900 bg-violet-200 rounded-full"
+      >
+        {{ course.category }}
+      </span>
+      <!-- Target Audience -->
+      <span
+        class="inline-block my-2 px-3 py-1 text-xs font-semibold text-violet-900  rounded-full"
+      >
+        {{ course.targetAudience }}
+      </span>
+      <!-- Description -->
+      <p
+        class="text-slate-600 text-sm leading-relaxed line-clamp-1 overflow-hidden group-hover:text-slate-700 transition-colors duration-300 break-words "
+      >
+        {{ course.description }}
+      </p>
+
+      <!-- Rating Stars - Dynamic Fill -->
+      <!-- Rating Stars -->
+      @if (course.rate) {
+      <div class="flex items-center gap-4">
+        <div class="flex gap-1.5">
+          @for (star of stars; track star) {
+          <div class="relative w-5 h-5">
+            <!-- Empty Star -->
+            <svg class="absolute inset-0 text-slate-300" fill="currentColor" viewBox="0 0 22 20">
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              />
+            </svg>
+
+            <!-- Filled portion -->
+            <div
+              class="absolute inset-0 overflow-hidden"
+              [style.width.%]="getStarFill(course.rate, star)"
+            >
+              <svg class="text-amber-400 drop-shadow-md" fill="currentColor" viewBox="0 0 22 20">
+                <path
+                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                />
+              </svg>
+            </div>
+          </div>
+          }
+        </div>
+
+        <span class="ml-2 text-sm font-bold text-slate-500">{{ course.rate }}⭐</span>
+      </div>
+      }
+
+      <!-- Divider -->
+      <div class="h-px bg-gradient-to-r from-purple-200 via-green-200 to-purple-200"></div>
+
+      <!-- Price Section -->
+      <div class="space-y-2">
+        <!-- <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Course Price</span> -->
+        <div class="flex justify-between gap-2">
+          <span
+            class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-purple-600 via-violet-600 to-purple-600"
+          >
+            ${{ course.price }}
+          </span>
+          <!-- <span class="text-slate-400 text-xs font-medium pb-1">USD</span> -->
+          <!-- hours -->
+          <span class="text-gray-400 text-base font-medium pb-1">{{ course.hours }}🕛</span>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex gap-3 mt-auto pt-1">
+        <button
+          class="flex-1 relative group/edit overflow-hidden py-3 px-4 rounded-xl font-bold text-white text-sm transition-all duration-500 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl hover:shadow-emerald-300/50 hover:-translate-y-1 active:scale-95"
+        >
+          <span class="relative z-10 flex items-center justify-center gap-2"   (click)="openUpdateForm(course)">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              />
+            </svg>
+            Edit
+          </span>
+          <div
+            class="absolute inset-0 bg-white opacity-0 group-hover/edit:opacity-10 transition-opacity"
+          ></div>
+        </button>
+        <button
+          class="flex-1 relative group/delete overflow-hidden py-3 px-4 rounded-xl font-bold text-white text-sm transition-all duration-500 bg-gradient-to-br from-red-500 to-violet-500 hover:from-red-600 hover:to-violet-600 hover:shadow-xl hover:shadow-red-300/50 hover:-translate-y-1 active:scale-95"
+        >
+          <span class="relative cursor-pointer z-10 flex items-center justify-center gap-2" (click)="handleDelete(course.id)">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+            Delete
+          </span>
+          <div
+            class="absolute inset-0 bg-white opacity-0 group-hover/delete:opacity-10 transition-opacity"
+          ></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  } } @else {
+  <div class="col-span-full flex items-center justify-center py-40">
+    <div class="text-center space-y-4">
+      <div class="text-6xl animate-bounce">📚</div>
+      <p
+        class="text-4xl font-black bg-gradient-to-r from-purple-600 via-green-600 to-purple-600 bg-clip-text text-transparent"
+      >
+        No Courses Yet
+      </p>
+      <p class="text-slate-500 text-lg">Start creating amazing courses today!</p>
+    </div>
+  </div>
+  }
+</div>

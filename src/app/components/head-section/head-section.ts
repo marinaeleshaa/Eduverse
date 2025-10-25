@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-head-section',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './head-section.css'
 })
 export class HeadSection {
+
+  @Input() title!: string;
+  @Input() subtitle!: string;
 
 }
