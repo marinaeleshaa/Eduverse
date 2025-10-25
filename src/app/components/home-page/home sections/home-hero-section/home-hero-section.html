@@ -5,10 +5,14 @@
     >
       <!-- left -->
       <div class="flex lg:w-[45%] w-full flex-col gap-5">
-        <h1 class="capitalize text-3xl md:text-4xl lg:text-5xl text-white leading-tight text-center lg:text-left font-bold">
+        <h1
+          class="capitalize text-3xl md:text-4xl lg:text-5xl text-white leading-tight text-center lg:text-left font-bold"
+        >
           learn new skills online with top
         </h1>
-        <p class="capitalize text-green-300 text-2xl md:text-3xl lg:text-4xl underline text-center lg:text-left font-semibold">
+        <p
+          class="capitalize text-green-300 text-2xl md:text-3xl lg:text-4xl underline text-center lg:text-left font-semibold"
+        >
           educators
         </p>
         <p class="text-gray-400 text-base md:text-md">
@@ -17,12 +21,13 @@
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <button
-          routerLink="/signUp"
+            routerLink="/signUp"
             class="px-6 py-3 text-sm font-medium text-violet-900 bg-gradient-to-r from-green-200 to-green-300 rounded-lg hover:shadow-lg hover:scale-105 transition-all cursor-pointer flex-1"
           >
             Join for free
           </button>
           <button
+            routerLink="/courses"
             class="px-6 py-3 text-sm font-medium text-green-300 hover:text-white border border-green-300 rounded-lg hover:bg-violet-800 transition-all cursor-pointer flex-1"
           >
             Find Courses
@@ -86,14 +91,16 @@
       <!-- right - Layered Random Grid -->
       <div class="lg:w-[50%] w-full hidden md:block relative min-h-[500px] lg:min-h-[400px]">
         <!-- Image Card 1 - Large, Bottom Left -->
-        <div class="absolute top-0 left-15 lg:left-10 xl:left-25 w-[50%] lg:w-[50%] xl:w-[45%] z-10 group">
+        <div
+          class="absolute top-0 left-15 lg:left-10 xl:left-25 w-[50%] lg:w-[50%] xl:w-[45%] z-10 group"
+        >
           <img
             src="1111.jpg"
             alt="Course preview"
-            class="w-full h-64 xl:h-58  object-cover rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-300"
+            class="w-full h-64 xl:h-58 object-cover rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-300"
           />
           <div
-            class="absolute xl:right-0 bottom-4 left-4 right-4 backdrop-blur-md bg-white/10 p-3 flex gap-3 rounded-lg items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            class="absolute xl:right-0 bottom-4 left-4 right-4 backdrop-blur-3xl bg-white/30 p-3 flex gap-3 rounded-lg items-center group-hover:scale-105 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +108,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6  text-green-300 flex-shrink-0"
+              class="w-6 h-6 text-white flex-shrink-0"
             >
               <path
                 stroke-linecap="round"
@@ -109,22 +116,22 @@
                 d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z"
               />
             </svg>
-            <div class="text-white">
+            <div class="text-violet-900">
               <p class="text-sm font-semibold">Web Development</p>
-              <p class="text-xs text-gray-300">Learn modern frameworks</p>
+              <p class="text-xs text-gray-600">Learn modern frameworks</p>
             </div>
           </div>
         </div>
 
         <!-- Image Card 2 - Medium, Top Right (Overlapping) -->
-        <div class="absolute top-12 right-0 lg:-right-8  w-[40%] lg:w-[45%] xl:w-[40%] z-30 group">
+        <div class="absolute top-12 right-0 lg:-right-8 w-[40%] lg:w-[45%] xl:w-[40%] z-30 group">
           <img
             src="222.jpg"
             alt="Course preview"
             class="w-full h-56 lg:h-64 object-cover rounded-xl shadow-2xl group-hover:scale-105 group-hover:z-40 transition-all duration-300"
           />
           <div
-            class="absolute bottom-4 left-4 right-4 backdrop-blur-md bg-white/10 p-3 flex gap-3 rounded-lg items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            class="absolute bottom-4 left-4 right-4 backdrop-blur-3xl bg-white/30 p-3 flex gap-3 rounded-lg items-center group-hover:scale-105 group-hover:z-40 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +139,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6 text-green-300 flex-shrink-0"
+              class="w-6 h-6 text-white flex-shrink-0"
             >
               <path
                 stroke-linecap="round"
@@ -141,21 +148,21 @@
               />
             </svg>
             <div class="text-white">
-              <p class="text-sm font-semibold">Design Mastery</p>
-              <p class="text-xs text-gray-300">Creative skills unlocked</p>
+              <p class="text-sm font-semibold text-violet-900">Design Mastery</p>
+              <p class="text-xs text-gray-600">Creative skills unlocked</p>
             </div>
           </div>
         </div>
 
         <!-- Image Card 3 - Small, Bottom Center (Overlapping both) -->
-        <div class="absolute bottom-15 lg:bottom-15 xl:-bottom-6 left-[30%] w-[40%]  z-20 group">
+        <div class="absolute bottom-15 lg:bottom-15 xl:-bottom-6 left-[30%] w-[40%] z-20 group">
           <img
             src="333.jpg"
             alt="Course preview"
             class="w-full h-52 lg:h-58 lg:w-60 object-cover rounded-xl shadow-2xl group-hover:scale-105 group-hover:z-40 transition-all duration-300"
           />
           <div
-            class="absolute bottom-4 left-4 right-4 backdrop-blur-md bg-white/10 p-3 flex gap-3 rounded-lg items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            class="absolute bottom-4 left-4 right-4 backdrop-blur-3xl bg-white/30 p-3 flex gap-3 rounded-lg items-center group-hover:scale-105 group-hover:z-40 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +170,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6 text-green-300 flex-shrink-0"
+              class="w-6 h-6 text-white flex-shrink-0"
             >
               <path
                 stroke-linecap="round"
@@ -171,9 +178,9 @@
                 d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z"
               />
             </svg>
-            <div class="text-white">
+            <div class="text-violet-900">
               <p class="text-sm font-semibold">Data Science</p>
-              <p class="text-xs text-gray-300">Master analytics & AI</p>
+              <p class="text-xs text-gray-600">Master analytics & AI</p>
             </div>
           </div>
         </div>
