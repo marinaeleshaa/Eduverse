@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.css',
 })
 export class Header {
+  isProfileShown = signal(false);
+  isCartShown = signal(false);
   isMenuOpen = false;
 
   constructor(private router: Router) {}
@@ -36,5 +38,27 @@ export class Header {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 200);
     }
+  }
+
+  logout() {
+    //TODO: implement logout functionality
+  }
+
+  toggleProfileMenu(event: Event) {
+    event.stopPropagation();
+    this.isProfileShown.update((value) => !value);
+    this.isCartShown.set(false);
+  }
+
+  toggleCartMenu(event: Event) {
+    event.stopPropagation();
+    this.isCartShown.update((value) => !value);
+    this.isProfileShown.set(false);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    this.isProfileShown.set(false);
+    this.isCartShown.set(false);
   }
 }
