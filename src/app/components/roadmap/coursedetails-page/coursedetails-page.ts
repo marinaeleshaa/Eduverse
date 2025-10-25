@@ -1,6 +1,7 @@
 import { Component, signal, WritableSignal,ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-coursedetails-page',
   imports: [CommonModule,ReactiveFormsModule],
@@ -22,7 +23,7 @@ export class CoursedetailsPage {
   }
 
   // back button
- 
+
 
   goBack(): void {
     this.location.back();
@@ -31,11 +32,11 @@ export class CoursedetailsPage {
   // add review and comment form
   reviewForm: FormGroup;
   // Keep the rating signal for visual state of stars only
-  rating: WritableSignal<number> = signal(0); 
+  rating: WritableSignal<number> = signal(0);
 
-  constructor(private location: Location) {
+  constructor(private location: Location,private router:Router) {
     this.reviewForm = new FormGroup({
-      name: new FormControl(''), 
+      name: new FormControl(''),
       rating: new FormControl(0, [Validators.required, Validators.min(1)]),
       comment: new FormControl('', [Validators.required]),
     });
@@ -46,7 +47,7 @@ export class CoursedetailsPage {
     // Crucially, update the rating FormControl value
     this.reviewForm.controls['rating'].setValue(newRating);
     // Mark as touched to show validation error if rating is 0
-    this.reviewForm.controls['rating'].markAsTouched(); 
+    this.reviewForm.controls['rating'].markAsTouched();
   }
 
   submitReview(): void {
@@ -69,13 +70,22 @@ export class CoursedetailsPage {
 
     this.resetForm();
   }
-  
+
   resetForm(): void {
     this.reviewForm.reset({
       name: '',
       rating: 0,
       comment: ''
     });
-    this.rating.set(0); 
+    this.rating.set(0);
   }
+
+  handleResponsive(){
+    if(this.router.url.includes("courses")){
+      return `rounded-xl`
+    }else{
+      return `rounded-tl-[50%_70px] rounded-tr-[50%_70px] md:rounded-tl-[50%_125px] md:rounded-tr-[50%_125px]`
+    }
+  }
+
 }
