@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from "./components/header/header";
 import { Footer } from './components/footer/footer';
-import { FlyingContactBtn } from './components/flying-contact-btn/flying-contact-btn';
+import { FlyingContactBtn } from './components/utils/flying-contact-btn/flying-contact-btn';
 
 @Component({
   selector: 'app-root',

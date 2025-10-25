@@ -1,13 +1,18 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { HomeHeroSection } from '../home-hero-section/home-hero-section';
+import { HomeHeroSection } from '../home-page/home sections/home-hero-section/home-hero-section';
 import { ContactUs } from '../contact-us/contact-us';
-import { Waves } from '../waves/waves';
+import { Waves } from '../utils/waves/waves';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { OurStoryComponent } from '../about-page/about sections/our-story/our-story.component';
+import { CoachingSection } from "./home sections/coaching-section/coaching-section";
+import { WhyELearning } from './home sections/why-e-learning/why-e-learning';
+import { OurRoadmap } from './home sections/our-roadmaps/our-roadmaps';
+import { TeachingMethods } from "./home sections/teaching-methods/teaching-methods";
 
 @Component({
   selector: 'app-home-page',
-  imports: [HomeHeroSection, ContactUs, Waves],
+  imports: [HomeHeroSection, ContactUs, Waves, OurStoryComponent, CoachingSection, WhyELearning, OurRoadmap, TeachingMethods],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
