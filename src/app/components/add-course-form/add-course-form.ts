@@ -31,6 +31,7 @@ export class AddCourseForm implements OnInit {
       price: [null, [Validators.required, Validators.min(1)]],
       hours: [null, [Validators.required, Validators.min(1)]],
       category: ['', [Validators.required]],
+      targetAudience: ['', [Validators.required]],
 
       // Outline
       outline: this.fb.array([]),
@@ -111,6 +112,10 @@ export class AddCourseForm implements OnInit {
       conclusion: conclusionData,
     };
 
+
+
+
+
     this.courseService.addCourse(courseData);
     this.courseForm.reset();
     this.outlineArray.clear();
@@ -124,5 +129,5 @@ export class AddCourseForm implements OnInit {
 
   closeModal() {
     this.formService.closeAddModal();
-  } 
+  }
 }

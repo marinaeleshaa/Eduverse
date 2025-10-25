@@ -123,6 +123,23 @@
         <p class="text-red-600 text-sm mt-1">Category is required</p>
         }
       </div>
+      <!-- Target Audience  -->
+       <div>
+        <label for="targetAudience" class="block text-sm font-medium text-violet-950 mb-2">Target Audience</label>
+        <select
+          id="targetAudience"
+          formControlName="targetAudience"
+          class="w-full px-4 py-3 rounded-lg border text-violet-900 bg-white/80 border-gray-300 focus:border-violet-400 focus:ring-2 focus:ring-violet-200 outline-none"
+        >
+          <option value="" disabled>Select a target audience</option>
+          <option value="beginners">Beginners</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        @if (f['targetAudience'].invalid && (f['targetAudience'].dirty || f['targetAudience'].touched)) {
+        <p class="text-red-600 text-sm mt-1">Target Audience is required</p>
+        }
+      </div>
 
       <!-- Outline Section -->
       <div class="bg-white/30 p-5 rounded-lg">

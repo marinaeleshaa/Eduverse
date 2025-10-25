@@ -7,6 +7,7 @@ export interface ICourse {
   rate: number | null;
   hours: number | null;
   category: string;
+  targetAudience: string;
   outline: { title: string; subtitle: string }[];
   conclusion: string[];
 }

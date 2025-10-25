@@ -38,6 +38,7 @@ export class UpdateCourseFormComponent implements OnInit {
       price: ['', [Validators.required, Validators.min(1)]],
       hours: ['', [Validators.required, Validators.min(1)]],
       category: ['', [Validators.required]],
+      targetAudience: ['', [Validators.required]],
       outline: this.fb.array([]),
       conclusion: this.fb.array([]),
       outlineTitle: [''],
@@ -106,6 +107,7 @@ export class UpdateCourseFormComponent implements OnInit {
       price: course.price,
       hours: course.hours,
       category: course.category,
+      targetAudience: course.targetAudience,
     });
 
     if (course.outline?.length) {
