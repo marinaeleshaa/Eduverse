@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.css',
 })
 export class Header {
+  isProfileShown = signal(false);
+  isCartShown = signal(false);
   isMenuOpen = false;
 
   constructor(private router: Router) {}
@@ -36,5 +38,15 @@ export class Header {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 200);
     }
+  }
+
+  toggleProfileMenu(event: Event) {
+    this.isProfileShown.update((value) => !value);
+    this.isCartShown.set(false);
+  }
+
+  toggleCartMenu(event: Event) {
+    this.isCartShown.update((value) => !value);
+    this.isProfileShown.set(false);
   }
 }
