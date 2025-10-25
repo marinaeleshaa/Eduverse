@@ -40,25 +40,13 @@ export class Header {
     }
   }
 
-  logout() {
-    //TODO: implement logout functionality
-  }
-
   toggleProfileMenu(event: Event) {
-    event.stopPropagation();
     this.isProfileShown.update((value) => !value);
     this.isCartShown.set(false);
   }
 
   toggleCartMenu(event: Event) {
-    event.stopPropagation();
     this.isCartShown.update((value) => !value);
     this.isProfileShown.set(false);
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event) {
-    this.isProfileShown.set(false);
-    this.isCartShown.set(false);
   }
 }

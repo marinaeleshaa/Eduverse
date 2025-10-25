@@ -153,7 +153,6 @@
             </div>
             <div class="flex items-center gap-2 w-full justify-between">
               <button
-                (click)="logout()"
                 class="w-full text-md font-bold text-white rounded-4xl hover:scale-105 cursor-pointer transition-all flex items-center justify-between gap-2"
               >
                 <div class="flex items-center gap-2">
@@ -198,12 +197,9 @@
 
       <!-- Hamburger menu button (visible only on screens smaller than xl) -->
       <button
-        (click)="toggleMenu()"
-        data-collapse-toggle="navbar-search"
         type="button"
+        (click)="toggleMenu()"
         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-green-300 rounded-lg xl:hidden hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-green-300"
-        aria-controls="navbar-search"
-        aria-expanded="false"
       >
         <span class="sr-only">Open main menu</span>
         <svg
@@ -226,36 +222,9 @@
 
     <!-- 🔸 Navigation links section -->
     <div
-      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      class="items-center justify-between w-full md:flex md:w-auto md:order-1"
       id="navbar-search"
     >
-      <!-- Search input for mobile dropdown -->
-      <div class="relative mt-3 md:hidden">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg
-            class="w-4 h-4 text-green-300"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 20 20"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-            />
-          </svg>
-        </div>
-        <input
-          type="text"
-          id="search-navbar-mobile"
-          class="block w-full p-2 ps-10 text-sm text-violet-900 border border-green-300 rounded-lg bg-gray-50 focus:ring-green-300 focus:border-green-300 focus:outline-0"
-          placeholder="Search..."
-        />
-      </div>
-
       <!-- Navigation links -->
       <div
         id="navbar-menu"
