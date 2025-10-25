@@ -12,6 +12,7 @@ import { CoursesMainPage } from './components/courses/courses-main-page/courses-
 import { RoadmapCoursesPage } from './components/roadmap/roadmap-courses-page/roadmap-courses-page';
 import { CoursesPage } from './components/courses/courses-page/courses-page';
 import { CoursesDash } from './components/dashboard/dashboard sections/courses-dash/courses-dash';
+import { loginAuthGuard } from './guards/login-auth-guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -31,6 +32,7 @@ export const routes: Routes = [
       { path: 'allcourses', component:  CoursesPage},
       { path: ':courseId', component: CoursedetailsPage },
     ],
+    canActivate:[loginAuthGuard]
    },
   {
     path: 'roadmap',
@@ -41,6 +43,7 @@ export const routes: Routes = [
       {path: 'courses',component: RoadmapCoursesPage},
       { path: ':courseId', component: CoursedetailsPage },
     ],
+    canActivate:[loginAuthGuard]
   },
   { path: 'login', component: LoginPage },
   { path: 'signUp', component: SignUpPage },
