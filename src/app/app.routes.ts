@@ -14,6 +14,8 @@ import { CoursesPage } from './components/courses/courses-page/courses-page';
 import { CoursesDash } from './components/dashboard/dashboard sections/courses-dash/courses-dash';
 import { loginAuthGuard } from './guards/login-auth-guard';
 import { RoadmapCoursedetailsPage } from './components/roadmap/roadmap-coursedetails-page/roadmap-coursedetails-page';
+import { loginProtectedGuard } from './guards/login-protected-guard';
+import { dashboardGuard } from './guards/dashboardGuard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -24,6 +26,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'courses', pathMatch: 'full' },
       { path: 'courses', component: CoursesDash },
     ],
+    canActivate:[dashboardGuard]
   },
   { path: 'home', component: HomePage },
   { path: 'about', component: AboutPage },
@@ -46,7 +49,7 @@ export const routes: Routes = [
     ],
     canActivate:[loginAuthGuard]
   },
-  { path: 'login', component: LoginPage },
-  { path: 'signUp', component: SignUpPage },
+  { path: 'login', component: LoginPage , canActivate:[loginProtectedGuard]},
+  { path: 'signUp', component: SignUpPage , canActivate:[loginProtectedGuard]},
   { path: '**', component: NotFoundPage },
 ];
