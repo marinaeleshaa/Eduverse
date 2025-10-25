@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ICourse } from '../../Interfaces/icourse';
-import { CourseService } from '../../services/course-service';
-import { FormService } from '../../services/form-service';
+import { CourseService } from '../../../../services/course-service';
+import { FormService } from '../../../../services/form-service';
+import { ICourse } from '../../../../Interfaces/icourse';
+
 
 @Component({
   selector: 'app-course-card',

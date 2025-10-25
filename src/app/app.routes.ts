@@ -5,11 +5,11 @@ import { NotFoundPage } from './components/not-found-page/not-found-page';
 import { LoginPage } from './components/login-page/login-page';
 import { SignUpPage } from './components/sign-up-page/sign-up-page';
 import { Dashboard } from './components/dashboard/dashboard';
-import { CoursesDash } from './components/courses-dash/courses-dash';
 import { RoadmapMainPage } from './components/roadmap/roadmap-main-page/roadmap-main-page';
 import { TracksPage } from './components/roadmap/tracks-page/tracks-page';
 import { CoursesPage } from './components/roadmap/courses-page/courses-page';
 import { CoursedetailsPage } from './components/roadmap/coursedetails-page/coursedetails-page';
+import { CoursesDash } from './components/dashboard/dashboard sections/courses-dash/courses-dash';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
