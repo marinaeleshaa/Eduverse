@@ -16,43 +16,25 @@ export class Header {
     this.isMenuOpen = !this.isMenuOpen;
   }
   async goHome(event: MouseEvent) {
-    event.preventDefault(); // منع التنقل التلقائي
+    event.preventDefault();
 
     const currentUrl = this.router.url.split('#')[0];
 
-    // ✅ الحالة 1: لو أنا بالفعل في /home
     if (currentUrl === '/home') {
-      // نمسح الفراجمنت لو موجود في الـ URL
+      //  remove fragment from URL if found
       if (window.location.hash) {
         history.replaceState(null, '', '/home');
       }
 
-      // نعمل scroll لأعلى الصفحة
+      // scroll to top smoothly
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // ✅ الحالة 2: لو أنا مش في /home
-      // نعمل navigation جديد
+      //if not on home, navigate to home
       await this.router.navigate(['/home']);
-      // بعد ما يوصل للهوم نطلع فوق
+      // then scroll to top after a short delay to ensure the page has loaded
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 200);
     }
   }
-
-  //   goHome() {
-  //   if (this.router.url.startsWith('/home')) {
-  //     // ✅ امسحي أي fragment من الـ URL
-  //     this.router.navigate([], {
-  //       fragment: undefined, // ← هنا التعديل الصحيح
-  //       queryParamsHandling: 'preserve',
-  //     });
-
-  //     // ✅ scroll لأعلى الصفحة بسلاسة
-  //     window.scrollTo({ top: 0, behavior: 'smooth' });
-  //   } else {
-  //     // ✅ المستخدم في صفحة تانية → روح للـ home
-  //     this.router.navigate(['/home']);
-  //   }
-  // }
 }
