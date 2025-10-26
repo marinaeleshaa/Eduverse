@@ -11,9 +11,11 @@
 
     <!-- Right section (Auth buttons and menu icon) -->
     <div class="flex xl:order-2 items-center gap-2">
+      @if(!isUserLoggedIn){
       <!-- Auth Buttons (Desktop) -->
-      <!-- <div class="hidden xl:flex items-center gap-2 mr-3">
+      <div class="hidden xl:flex items-center gap-2 mr-3">
         <button
+          (click)="login()"
           routerLink="login"
           class="px-3 py-2 text-sm font-medium text-green-300 hover:text-white border border-green-300 rounded-lg hover:bg-violet-800 transition-all cursor-pointer"
         >
@@ -25,8 +27,8 @@
         >
           Sign Up
         </button>
-      </div> -->
-
+      </div>
+      } @if(isUserLoggedIn){
       <div class="hidden xl:flex items-center gap-6 mr-3">
         <!-- Cart Icon -->
         <div>
@@ -84,7 +86,7 @@
         data-profileMenu="true"
         animate.enter="enter-profile-animation"
         animate.leave="leave-profile-animation"
-        class="w-2/12 bg-white/20 backdrop-blur-2xl fixed top-15 right-0 rounded-lg"
+        class="w-2/12 bg-gradient-to-br from-violet-950 to-violet-400 backdrop-blur-2xl fixed top-15 right-0 rounded-lg"
         (click)="$event.stopPropagation()"
       >
         <div>
@@ -157,6 +159,7 @@
             </div>
             <div class="flex items-center gap-2 w-full justify-between">
               <button
+                (click)="logout()"
                 class="w-full text-md font-bold text-white rounded-4xl hover:scale-105 cursor-pointer transition-all flex items-center justify-between gap-2"
               >
                 <div class="flex items-center gap-2">
@@ -197,8 +200,7 @@
           </div>
         </div>
       </div>
-      }
-
+      } }
       <!-- Hamburger menu button (visible only on screens smaller than xl) -->
       <button
         type="button"
@@ -238,6 +240,7 @@
         <ul
           class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-violet-800 rounded-lg md:space-x-8 rtl:space-x-reverse xl:flex-row xl:mt-0 xl:border-0"
         >
+          @if(isUserLoggedIn){
           <!-- Dashboard Link -->
           <li>
             <a
@@ -248,7 +251,7 @@
               Dashboard
             </a>
           </li>
-
+          }
           <!-- Home Link -->
           <li>
             <a
@@ -298,6 +301,7 @@
           <!-- Auth Buttons (Mobile only) -->
           <li class="xl:hidden flex gap-2 mt-2">
             <button
+              (click)="login()"
               routerLink="login"
               class="flex-1 px-4 py-2 text-sm font-medium text-green-300 border border-green-300 rounded-lg hover:bg-violet-800 transition-all"
             >
@@ -321,7 +325,7 @@
   data-cartMenu="true"
   animate.enter="enter-cart-animation"
   animate.leave="leave-cart-animation"
-  class="fixed top-16 right-0 w-96 h-11/12 bg-white/15 backdrop-blur-2xl p-4 rounded-lg z-[999]"
+  class="fixed top-16 right-0 w-96 h-11/12 bg-gradient-to-br from-violet-950 to-violet-400 backdrop-blur-2xl p-4 rounded-lg z-[999]"
   (click)="$event.stopPropagation()"
 >
   <h3 class="text-white text-2xl text-center font-bold mb-4">Cart Items</h3>

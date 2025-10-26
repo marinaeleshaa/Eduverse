@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener,  OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { UserAuth } from '../../services/user-auth';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,12 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {
+export class Header implements OnInit {
   isProfileShown = signal(false);
   isCartShown = signal(false);
   isMenuOpen = false;
-
-  constructor(private router: Router) {}
+  isUserLoggedIn!: boolean;
+  constructor(private router: Router, private userAuth: UserAuth) {}
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -48,5 +49,21 @@ export class Header {
   toggleCartMenu(event: Event) {
     this.isCartShown.update((value) => !value);
     this.isProfileShown.set(false);
+  }
+
+  ngOnInit() {
+    this.isUserLoggedIn = this.userAuth.isLoggedIn;
+
+    this.userAuth.authStatus$.subscribe((status) => {
+      this.isUserLoggedIn = status;
+    });
+  }
+
+  login() {
+    this.userAuth.login();
+  }
+  logout() {
+    this.userAuth.logout();
+    this.router.navigate(['/home']);
   }
 }
