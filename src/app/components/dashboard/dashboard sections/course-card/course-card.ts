@@ -1,34 +1,25 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CourseService } from '../../../../services/course-service';
 import { FormService } from '../../../../services/form-service';
 import { ICourse } from '../../../../Interfaces/icourse';
-
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-card',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './course-card.html',
   styleUrl: './course-card.css',
 })
-export class CourseCard {
-  // courses: ICourse[] = [];
+export class CourseCard implements OnInit {
+  courses$!: Observable<ICourse[]>;
 
-  constructor(private courseService: CourseService , private formService: FormService) {}
-
-  // use getters to update the ui from service
-  get courses() {
-    return this.courseService.courses;
+  constructor(private courseService: CourseService, private formService: FormService) {}
+  ngOnInit() {
+    this.courseService.getCourses();
+    this.courses$ = this.courseService.courses$; // directly assign once
   }
 
-  // @Input() newCourse!: ICourse;
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log(changes);
-  //   if (!changes['newCourse'].firstChange) {
-  //     this.courses.unshift(this.newCourse);
-  //   }
-  //   console.log(this.courses);
-  // }
 
   stars = [1, 2, 3, 4, 5];
 
@@ -40,12 +31,13 @@ export class CourseCard {
     return ((rate - prevValue) / 2) * 100; // partial
   }
 
-  handleDelete(id: string) {
-    this.courseService.deleteCourse(id);
-  }
+ handleDelete(id: string) {
+  console.log('🧩 handleDelete clicked for id:', id); // 3️⃣ check button click
+  this.courseService.deleteCourse(id);
+}
+
 
   @Input() course!: ICourse;
-
 
   openUpdateForm(course: ICourse) {
     this.formService.openEditModal(course);
