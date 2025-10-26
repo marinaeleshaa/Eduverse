@@ -6,7 +6,6 @@ export const dashboardGuard: CanActivateFn = (route, state) => {
   const userAuth = inject(UserAuth);
   const router = inject(Router);
 
-  console.log(userAuth.isLoggedIn);
 
   if (!userAuth.isLoggedIn) {
     router.navigate(['/login']);

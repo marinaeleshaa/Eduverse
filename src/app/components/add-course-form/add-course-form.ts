@@ -25,9 +25,9 @@ export class AddCourseForm implements OnInit {
 
   ngOnInit(): void {
     this.courseForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      courseName: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      imgUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]],
+      courseCover: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]],
       price: [null, [Validators.required, Validators.min(1)]],
       hours: [null, [Validators.required, Validators.min(1)]],
       category: ['', [Validators.required]],
@@ -107,7 +107,6 @@ export class AddCourseForm implements OnInit {
 
     const courseData: ICourse = {
       ...this.courseForm.value,
-      id: uuidv4(),
       outline: outlineData,
       conclusion: conclusionData,
     };
@@ -115,7 +114,7 @@ export class AddCourseForm implements OnInit {
 
 
 
-
+    console.log(courseData);
     this.courseService.addCourse(courseData);
     this.courseForm.reset();
     this.outlineArray.clear();

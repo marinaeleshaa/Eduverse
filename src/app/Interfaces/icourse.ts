@@ -1,8 +1,8 @@
 export interface ICourse {
-  id:string,
-  name: string;
+  _id:string,
+  courseName: string;
   description: string;
-  imgUrl: string;
+  courseCover: string;
   price: number | null;
   rate: number | null;
   hours: number | null;
