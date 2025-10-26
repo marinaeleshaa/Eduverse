@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, OnInit, WritableSignal } from '@angular/core';
+import { Component, signal, HostListener,  OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserAuth } from '../../services/user-auth';
 
@@ -41,12 +41,14 @@ export class Header implements OnInit {
     }
   }
 
-  toggleProfileMenu(): void {
-    this.toggleGenericMenu(this.isProfileShown, this.isCartShown);
+  toggleProfileMenu(event: Event) {
+    this.isProfileShown.update((value) => !value);
+    this.isCartShown.set(false);
   }
 
-  toggleCartMenu(): void {
-    this.toggleGenericMenu(this.isCartShown, this.isProfileShown);
+  toggleCartMenu(event: Event) {
+    this.isCartShown.update((value) => !value);
+    this.isProfileShown.set(false);
   }
 
   ngOnInit() {
@@ -63,24 +65,5 @@ export class Header implements OnInit {
   logout() {
     this.userAuth.logout();
     this.router.navigate(['/home']);
-    this.closeProfileMenu();
-  }
-
-  goToWatchLaterPage(): void {
-    this.router.navigate(['/watch-later']);
-    this.closeProfileMenu();
-  }
-
-  private closeProfileMenu(): void {
-    this.isProfileShown.set(false);
-    this.isCartShown.set(false);
-  }
-
-  private toggleGenericMenu(
-    firstMethod: WritableSignal<boolean>,
-    secondMethod: WritableSignal<boolean>
-  ): void {
-    firstMethod.update((value) => !value);
-    secondMethod.set(false);
   }
 }

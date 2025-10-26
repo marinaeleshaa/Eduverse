@@ -1,16 +1,16 @@
-import { Component, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, WritableSignal,ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-display-coursedetails-component',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './display-coursedetails-component.html',
-  styleUrl: './display-coursedetails-component.css',
+  styleUrl: './display-coursedetails-component.css'
 })
 export class DisplayCoursedetailsComponent {
-  // toggle display button
+ // toggle display button
   isCollapsed: boolean = true;
   isListCollapsed: boolean = true;
 
@@ -22,6 +22,8 @@ export class DisplayCoursedetailsComponent {
   }
 
   // back button
+
+
   goBack(): void {
     this.location.back();
   }
@@ -31,7 +33,7 @@ export class DisplayCoursedetailsComponent {
   // Keep the rating signal for visual state of stars only
   rating: WritableSignal<number> = signal(0);
 
-  constructor(private location: Location, private router: Router) {
+  constructor(private location: Location,private router:Router) {
     this.reviewForm = new FormGroup({
       name: new FormControl(''),
       rating: new FormControl(0, [Validators.required, Validators.min(1)]),
@@ -72,7 +74,7 @@ export class DisplayCoursedetailsComponent {
     this.reviewForm.reset({
       name: '',
       rating: 0,
-      comment: '',
+      comment: ''
     });
     this.rating.set(0);
   }

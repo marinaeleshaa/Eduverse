@@ -16,7 +16,6 @@ import { loginAuthGuard } from './guards/login-auth-guard';
 import { RoadmapCoursedetailsPage } from './components/roadmap/roadmap-coursedetails-page/roadmap-coursedetails-page';
 import { loginProtectedGuard } from './guards/login-protected-guard';
 import { dashboardGuard } from './guards/dashboardGuard';
-import { WatchLaterPage } from './components/watch-later-page/watch-later-page';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -27,33 +26,30 @@ export const routes: Routes = [
       { path: '', redirectTo: 'courses', pathMatch: 'full' },
       { path: 'courses', component: CoursesDash },
     ],
-    canActivate: [dashboardGuard],
+    canActivate:[dashboardGuard]
   },
   { path: 'home', component: HomePage },
   { path: 'about', component: AboutPage },
-  {
-    path: 'courses',
-    component: CoursesMainPage,
+  { path: 'courses', component: CoursesMainPage,
     children: [
       { path: '', redirectTo: 'allcourses', pathMatch: 'full' },
-      { path: 'allcourses', component: CoursesPage },
+      { path: 'allcourses', component:  CoursesPage},
       { path: ':courseId', component: CoursedetailsPage },
     ],
-    canActivate: [loginAuthGuard],
-  },
+    canActivate:[loginAuthGuard]
+   },
   {
     path: 'roadmap',
     component: RoadmapMainPage,
     children: [
       { path: '', redirectTo: 'tracks', pathMatch: 'full' },
       { path: 'tracks', component: TracksPage },
-      { path: 'courses', component: RoadmapCoursesPage },
+      {path: 'courses',component: RoadmapCoursesPage},
       { path: ':courseId', component: RoadmapCoursedetailsPage },
     ],
-    canActivate: [loginAuthGuard],
+    canActivate:[loginAuthGuard]
   },
-  { path: 'login', component: LoginPage, canActivate: [loginProtectedGuard] },
-  { path: 'signUp', component: SignUpPage, canActivate: [loginProtectedGuard] },
-  { path: 'watch-later', component: WatchLaterPage, canActivate: [dashboardGuard] },
+  { path: 'login', component: LoginPage , canActivate:[loginProtectedGuard]},
+  { path: 'signUp', component: SignUpPage , canActivate:[loginProtectedGuard]},
   { path: '**', component: NotFoundPage },
 ];
