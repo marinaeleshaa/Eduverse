@@ -25,10 +25,9 @@ export class UpdateCourseFormComponent implements OnInit {
   ngOnInit() {
     // Form with validation
     this.courseForm = this.fb.group({
-      id: [''],
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      courseName: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', [Validators.required, Validators.minLength(10)]],
-      imgUrl: [
+      courseCover: [
         '',
         [
           Validators.required,
@@ -100,10 +99,9 @@ export class UpdateCourseFormComponent implements OnInit {
     this.conclusionArray.clear();
 
     this.courseForm.patchValue({
-      id: course.id,
-      name: course.name,
+      courseName: course.courseName,
       description: course.description,
-      imgUrl: course.imgUrl,
+      courseCover: course.courseCover,
       price: course.price,
       hours: course.hours,
       category: course.category,
@@ -127,7 +125,7 @@ export class UpdateCourseFormComponent implements OnInit {
 
   updateCourse() {
     if (this.courseForm.invalid) return;
-    const updatedCourse: ICourse = this.courseForm.value;
+    const updatedCourse: ICourse = {_id: this.selectedCourse?._id, ...this.courseForm.value };
     this.courseService.updateCourse(updatedCourse);
     this.closeModal();
   }
