@@ -1,11 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, signal, OnInit, WritableSignal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserAuth } from '../../services/user-auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, AsyncPipe],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -13,7 +14,7 @@ export class Header implements OnInit {
   isProfileShown = signal(false);
   isCartShown = signal(false);
   isMenuOpen = false;
-  isUserLoggedIn!: boolean;
+  isUserLoggedIn!: Observable<boolean>;
   constructor(private router: Router, private userAuth: UserAuth) {}
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -50,15 +51,7 @@ export class Header implements OnInit {
   }
 
   ngOnInit() {
-    this.isUserLoggedIn = this.userAuth.isLoggedIn;
-
-    this.userAuth.authStatus$.subscribe((status) => {
-      this.isUserLoggedIn = status;
-    });
-  }
-
-  login() { 
-    this.userAuth.login();
+    this.isUserLoggedIn = this.userAuth.authStatus$;
   }
   logout() {
     this.userAuth.logout();

@@ -2,6 +2,8 @@ import { Component, signal, WritableSignal, ChangeDetectionStrategy } from '@ang
 import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { WatchLaterService } from '../../services/watch-later-service';
+
 @Component({
   selector: 'app-display-coursedetails-component',
   imports: [CommonModule, ReactiveFormsModule],
@@ -31,7 +33,11 @@ export class DisplayCoursedetailsComponent {
   // Keep the rating signal for visual state of stars only
   rating: WritableSignal<number> = signal(0);
 
-  constructor(private location: Location, private router: Router) {
+  constructor(
+    private location: Location,
+    private router: Router,
+    private watchLater: WatchLaterService
+  ) {
     this.reviewForm = new FormGroup({
       name: new FormControl(''),
       rating: new FormControl(0, [Validators.required, Validators.min(1)]),
@@ -75,5 +81,9 @@ export class DisplayCoursedetailsComponent {
       comment: '',
     });
     this.rating.set(0);
+  }
+
+  handleWatchLater() {
+    this.watchLater.toggleCourseToWatchLater(this.router.url.split('/')[2]);
   }
 }
