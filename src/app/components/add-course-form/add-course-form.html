@@ -134,7 +134,7 @@
           </div>
 
           <!-- target audience -->
-           <div>
+          <div>
             <label class="block text-sm font-medium text-violet-950 mb-2">Target Audience</label>
             <select
               formControlName="targetAudience"
@@ -145,7 +145,8 @@
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
             </select>
-            @if (f['targetAudience'].invalid && (f['targetAudience'].dirty || f['targetAudience'].touched)) {
+            @if (f['targetAudience'].invalid && (f['targetAudience'].dirty ||
+            f['targetAudience'].touched)) {
             <p class="text-red-600 text-sm mt-1">Target Audience is required</p>
             }
           </div>
@@ -176,34 +177,33 @@
               </button>
             </div>
 
-            @if (outlineArray.controls.length > 0) {
-              @for (item of outlineArray.controls; track $index) {
-              <div
-                class="flex justify-between items-start bg-white/70 border border-violet-100 rounded-lg p-3 mb-2"
-              >
-                <div class="overflow-hidden">
-                  <h4
-                    class="font-semibold text-violet-950 text-sm md:text-base break-words overflow-hidden text-ellipsis line-clamp-1"
-                  >
-                    {{ item.value.title }}
-                  </h4>
-                  <p
-                    class="text-sm text-violet-800 break-words overflow-hidden text-ellipsis line-clamp-1"
-                  >
-                    {{ item.value.subtitle }}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  (click)="removeOutlineItem($index)"
-                  class="text-red-500 hover:text-red-700 font-bold text-sm ml-2"
+            @if (outlineArray.controls.length > 0) { @for (item of outlineArray.controls; track
+            $index) {
+            <div
+              class="flex justify-between items-start bg-white/70 border border-violet-100 rounded-lg p-3 mb-2"
+            >
+              <div class="overflow-hidden">
+                <h4
+                  class="font-semibold text-violet-950 text-sm md:text-base break-words overflow-hidden text-ellipsis line-clamp-1"
                 >
-                  ✕
-                </button>
+                  {{ item.value.title }}
+                </h4>
+                <p
+                  class="text-sm text-violet-800 break-words overflow-hidden text-ellipsis line-clamp-1"
+                >
+                  {{ item.value.subtitle }}
+                </p>
               </div>
-              }
-            } @else {
-              <p class="text-sm text-gray-600 text-center">No outline items added yet.</p>
+              <button
+                type="button"
+                (click)="removeOutlineItem($index)"
+                class="text-red-500 hover:text-red-700 font-bold text-sm ml-2"
+              >
+                ✕
+              </button>
+            </div>
+            } } @else {
+            <p class="text-sm text-gray-600 text-center">No outline items added yet.</p>
             }
           </div>
 
@@ -227,27 +227,26 @@
               </button>
             </div>
 
-            @if (conclusionArray.controls.length > 0) {
-              @for (item of conclusionArray.controls; track $index) {
-              <div
-                class="flex justify-between items-center bg-white/70 border border-violet-100 rounded-lg p-3 mb-2"
+            @if (conclusionArray.controls.length > 0) { @for (item of conclusionArray.controls;
+            track $index) {
+            <div
+              class="flex justify-between items-center bg-white/70 border border-violet-100 rounded-lg p-3 mb-2"
+            >
+              <p
+                class="text-violet-950 break-words overflow-hidden text-ellipsis line-clamp-1 flex-1 pr-2"
               >
-                <p
-                  class="text-violet-950 break-words overflow-hidden text-ellipsis line-clamp-1 flex-1 pr-2"
-                >
-                  {{ item.value }}
-                </p>
-                <button
-                  type="button"
-                  (click)="removeConclusionItem($index)"
-                  class="text-red-500 hover:text-red-700 font-bold text-sm"
-                >
-                  ✕
-                </button>
-              </div>
-              }
-            } @else {
-              <p class="text-sm text-gray-600 text-center">No conclusion points added yet.</p>
+                {{ item.value }}
+              </p>
+              <button
+                type="button"
+                (click)="removeConclusionItem($index)"
+                class="text-red-500 hover:text-red-700 font-bold text-sm"
+              >
+                ✕
+              </button>
+            </div>
+            } } @else {
+            <p class="text-sm text-gray-600 text-center">No conclusion points added yet.</p>
             }
           </div>
         </div>
