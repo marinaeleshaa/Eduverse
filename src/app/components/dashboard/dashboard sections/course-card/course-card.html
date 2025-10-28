@@ -5,7 +5,7 @@
   allCourses; track $index) {
 
   <div
-    class="group relative flex flex-col rounded-3xl overflow-hidden h-[470px] cursor-pointer transition-all duration-700 hover:duration-300 shadow-md"
+    class="group relative flex flex-col rounded-3xl overflow-hidden h-[470px] transition-all duration-700 hover:duration-300 shadow-md"
   >
     <!-- Card Background with Dynamic Gradient -->
     <div class="absolute inset-0 bg-white rounded-3xl -z-20"></div>
@@ -44,16 +44,14 @@
       <div
         class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-purple-500/20 to-green-500/20"
       ></div>
-
-
     </div>
 
     <!-- Content Container -->
-    <div class="flex flex-col flex-grow p-4 space-y-2">
+    <div class="flex flex-col flex-grow p-4 space-y-1 pt-1">
       <!-- Title with Underline Effect -->
       <div class="relative">
         <h3
-          class="text-2xl font-black text-slate-900 line-clamp-1 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:to-green-600 transition-all duration-500 break-words"
+          class="text-2xl font-black text-violet-900 line-clamp-1 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:to-green-600 transition-all duration-500 break-words capitalize"
         >
           {{ course.courseName }}
         </h3>
@@ -69,7 +67,25 @@
         {{ course.category }}
       </span>
       <!-- Target Audience -->
-      <span class="inline-block my-2 px-3 py-1 text-xs font-semibold text-violet-900 rounded-full">
+      <span class="   py-1 capitalize text-xs font-semibold text-violet-900 rounded-full flex items-center gap-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-up-narrow-wide-icon lucide-arrow-up-narrow-wide"
+        >
+          <path d="m3 8 4-4 4 4" />
+          <path d="M7 4v16" />
+          <path d="M11 12h4" />
+          <path d="M11 16h7" />
+          <path d="M11 20h10" />
+        </svg>
         {{ course.targetAudience }}
       </span>
       <!-- Description -->
@@ -79,15 +95,13 @@
         {{ course.description }}
       </p>
 
-    
-
       <!-- Divider -->
       <div class="h-px bg-gradient-to-r from-purple-200 via-green-200 to-purple-200"></div>
 
       <!-- Price Section -->
       <div class="space-y-2">
         <!-- <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Course Price</span> -->
-        <div class="flex justify-between gap-2">
+        <div class="flex justify-between items-center gap-2">
           <span
             class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-purple-600 via-violet-600 to-purple-600"
           >
@@ -95,14 +109,31 @@
           </span>
           <!-- <span class="text-slate-400 text-xs font-medium pb-1">USD</span> -->
           <!-- hours -->
-          <span class="text-gray-400 text-base font-medium pb-1">{{ course.hours }}🕛</span>
+          <span class="text-gray-400 text-base font-medium flex items-center gap-1"
+            >{{ course.hours }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-timer-icon lucide-timer"
+            >
+              <line x1="10" x2="14" y1="2" y2="2" />
+              <line x1="12" x2="15" y1="14" y2="11" />
+              <circle cx="12" cy="14" r="8" /></svg
+          ></span>
         </div>
       </div>
 
       <!-- CTA Buttons -->
       <div class="flex gap-3 mt-auto pt-1">
         <button
-          class="flex-1 relative group/edit overflow-hidden py-3 px-4 rounded-xl font-bold text-white text-sm transition-all duration-500 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl hover:shadow-emerald-300/50 hover:-translate-y-1 active:scale-95"
+          class="flex-1 relative cursor-pointer group/edit overflow-hidden py-3 px-4 rounded-xl font-bold text-white text-sm transition-all duration-500 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 hover:shadow-xl hover:shadow-emerald-300/50 hover:-translate-y-1 active:scale-95"
         >
           <span
             class="relative z-10 flex items-center justify-center gap-2"
@@ -124,7 +155,7 @@
         </button>
         <button
           (click)="handleDelete(course._id)"
-          class="flex-1 relative group/delete overflow-hidden py-3 px-4 rounded-xl font-bold text-white text-sm transition-all duration-500 bg-gradient-to-br from-red-500 to-violet-500 hover:from-red-600 hover:to-violet-600 hover:shadow-xl hover:shadow-red-300/50 hover:-translate-y-1 active:scale-95"
+          class="flex-1 relative cursor-pointer group/delete overflow-hidden py-3 px-4 rounded-xl font-bold text-white text-sm transition-all duration-500 bg-gradient-to-br from-red-500 to-violet-500 hover:from-red-600 hover:to-violet-600 hover:shadow-xl hover:shadow-red-300/50 hover:-translate-y-1 active:scale-95"
         >
           <span class="relative cursor-pointer z-10 flex items-center justify-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
