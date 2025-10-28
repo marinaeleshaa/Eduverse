@@ -5,7 +5,6 @@ import ResponseEntity from '../Interfaces/ResponseEntity';
 import LoginCredentials from '../Interfaces/loginCredentials';
 import IUser from '../Interfaces/IUser';
 import registrationCredentials from '../Interfaces/registrationCredentials';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
