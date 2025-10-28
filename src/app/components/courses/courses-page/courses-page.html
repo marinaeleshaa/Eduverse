@@ -37,16 +37,17 @@
           />
         </div>
       </div>
+      @let filtered = (filteredCourses | async) ; @if (filtered?.length) {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-10">
-        @for (course of filteredCourses; track course.id) {
+        @for (course of filtered; track course._id) {
         <a
-          [routerLink]="['/courses', course.id]"
+          [routerLink]="['/courses', course._id]"
           class="block h-64 relative overflow-hidden group transition duration-200 ease-in-out transform hover:scale-[1.05] shadow-xl hover:shadow-2xl rounded-lg"
         >
           <img
             class="h-full w-full object-cover object-center"
-            [src]="course.imageSrc"
-            [alt]="'Image for ' + course.name"
+            [src]="course.courseCover"
+            [alt]="'Image for ' + course.courseName"
             onerror="this.onerror=null;this.src='https://placehold.co/600x400/312e81/ffffff?text=Course+Image';"
           />
 
@@ -56,7 +57,7 @@
             <div class="flex-grow pr-2">
               <p class="text-xs text-violet-500 font-semibold">{{ course.category }}</p>
               <h1 class="text-xl text-gray-900 font-extrabold line-clamp-1 mt-1">
-                {{ course.name }}
+                {{ course.courseName }}
               </h1>
             </div>
 
@@ -81,6 +82,9 @@
         </a>
         }
       </div>
+      } @else {
+      <p class="text-2xl text-center text-indigo-950">No courses found</p>
+      }
     </div>
   </div>
 </div>
