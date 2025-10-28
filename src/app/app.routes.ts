@@ -39,7 +39,6 @@ export const routes: Routes = [
       { path: 'allcourses', component: CoursesPage },
       { path: ':courseId', component: CoursedetailsPage },
     ],
-    canActivate: [loginAuthGuard],
   },
   {
     path: 'roadmap',
