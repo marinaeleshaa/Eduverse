@@ -3,6 +3,8 @@ import { Component, signal, OnInit, WritableSignal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserAuth } from '../../services/user-auth';
 import { Observable } from 'rxjs';
+import { CartService } from '../../services/cart-service';
+import { ICourse } from '../../Interfaces/icourse';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,12 @@ export class Header implements OnInit {
   isCartShown = signal(false);
   isMenuOpen = false;
   isUserLoggedIn!: Observable<boolean>;
-  constructor(private router: Router, private userAuth: UserAuth) {}
+  cartItems!: Observable<ICourse[]>;
+  constructor(
+    private router: Router,
+    private userAuth: UserAuth,
+    private cartService: CartService
+  ) {}
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -52,6 +59,21 @@ export class Header implements OnInit {
 
   ngOnInit() {
     this.isUserLoggedIn = this.userAuth.authStatus$;
+    this.cartItems = this.cartService.cartItems$;
+    this.cartService.getCartItems();
+  }
+
+  getCartTotal(): number {
+    let total = 0;
+    this.cartItems.subscribe((items) => {
+      total = items.reduce((total, item) => total + item.price!, 0);
+    });
+    return total;
+  }
+
+  removeItem(id: string) {
+    this.cartService.removeFromCart(id);
+    this.cartService.getCartItems();
   }
   logout() {
     this.userAuth.logout();

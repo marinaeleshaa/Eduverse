@@ -3,6 +3,8 @@ import { CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WatchLaterService } from '../../services/watch-later-service';
+import { CartService } from '../../services/cart-service';
+import { ICourse } from '../../Interfaces/icourse';
 
 @Component({
   selector: 'app-display-coursedetails-component',
@@ -36,13 +38,18 @@ export class DisplayCoursedetailsComponent {
   constructor(
     private location: Location,
     private router: Router,
-    private watchLater: WatchLaterService
+    private watchLater: WatchLaterService,
+    private cartService: CartService
   ) {
     this.reviewForm = new FormGroup({
       name: new FormControl(''),
       rating: new FormControl(0, [Validators.required, Validators.min(1)]),
       comment: new FormControl('', [Validators.required]),
     });
+  }
+
+  addToCart(course: ICourse): void {
+    this.cartService.addToCart(course);
   }
 
   selectRating(newRating: number): void {
