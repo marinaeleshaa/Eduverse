@@ -56,10 +56,6 @@ export class Header implements OnInit {
       this.isUserLoggedIn = status;
     });
   }
-
-  login() {
-    this.userAuth.login();
-  }
   logout() {
     this.userAuth.logout();
     this.router.navigate(['/home']);
