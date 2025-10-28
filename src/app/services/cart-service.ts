@@ -11,6 +11,9 @@ export class CartService {
 
   addToCart(course: ICourse) {
     const current = this.cartItems.value;
+    if (current.find((c) => c._id === course._id)) {
+      return;
+    }
     this.cartItems.next([course, ...current]);
     localStorage.setItem('cart', JSON.stringify([course, ...current]));
   }
@@ -24,9 +27,9 @@ export class CartService {
     }
   }
 
-  removeFromCart(course: ICourse) {
+  removeFromCart(courseId: string) {
     const current = this.cartItems.value;
-    const updated = current.filter((c) => c._id !== course._id);
+    const updated = current.filter((c) => c._id !== courseId);
     this.cartItems.next(updated);
     localStorage.setItem('cart', JSON.stringify(updated));
   }
