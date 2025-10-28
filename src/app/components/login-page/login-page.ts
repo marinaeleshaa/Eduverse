@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {
   FormGroup,
@@ -9,18 +9,21 @@ import {
 } from '@angular/forms';
 import { UserAuth } from '../../services/user-auth';
 import LoginCredentials from '../../Interfaces/loginCredentials';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterLink, ReactiveFormsModule, FormsModule],
+  imports: [RouterLink, ReactiveFormsModule, FormsModule, AsyncPipe],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   userData!: {
     email: string;
     password: string;
   };
+  errorMessage!: Observable<string>;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
@@ -28,6 +31,10 @@ export class LoginPage {
   });
 
   constructor(private userAuthService: UserAuth, private router: Router) {}
+
+  ngOnInit(): void {
+    this.errorMessage = this.userAuthService.errorMessage$;
+  }
 
   get emailValid() {
     return this.loginForm.controls.email.valid;
@@ -48,8 +55,13 @@ export class LoginPage {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.userAuthService.login({ email, password } as LoginCredentials);
-      this.loginForm.reset();
-      this.router.navigate(['/home']);
+      setTimeout(() => {
+        if (this.userAuthService.isLoggedIn) {
+          this.loginForm.reset();
+          this.router.navigate(['/home']);
+        }
+      }, 1000);
+      // make uer auth return bool so we can handle optional rest from here and navigation
     }
   }
 }
