@@ -11,7 +11,7 @@
 
     <!-- Right section (Auth buttons and menu icon) -->
     <div class="flex xl:order-2 items-center gap-2">
-      @if(!isUserLoggedIn){
+      @let auth = (isUserLoggedIn | async) ;@if(!auth ){
       <!-- Auth Buttons (Desktop) -->
       <div class="hidden xl:flex items-center gap-2 mr-3">
         <button
@@ -27,7 +27,7 @@
           Sign Up
         </button>
       </div>
-      } @if(isUserLoggedIn){
+      } @if(auth){
       <div class="hidden xl:flex items-center gap-6 mr-3">
         <!-- Cart Icon -->
         <div>
