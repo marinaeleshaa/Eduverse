@@ -19,8 +19,8 @@ export class UserAuth {
   };
   constructor(private http: HttpClient) {}
   private apiUrl = 'http://localhost:3000/api/auth';
-  private userAuth = new BehaviorSubject<IUser>(this.initialData);
-  userAuth$ = this.userAuth.asObservable();
+  private userProfile = new BehaviorSubject<IUser>(this.initialData);
+  userProfile$ = this.userProfile.asObservable();
 
   private hasToken(): boolean {
     return !!localStorage.getItem('userToken');
@@ -35,7 +35,7 @@ export class UserAuth {
   login(credentials: LoginCredentials): void {
     this.http.post<ResponseEntity>(`${this.apiUrl}/signin`, credentials).subscribe({
       next: (response) => {
-        this.userAuth.next(response.data);
+        this.userProfile.next(response.data);
         this.authStatus.next(true);
         localStorage.setItem('userToken', `Bearer ${response.data.accessToken}`);
         // localStorage.setItem('refreshToken', response.data.refreshToken);
@@ -46,7 +46,7 @@ export class UserAuth {
   register(registrationCredentials: registrationCredentials): void {
     this.http.post<ResponseEntity>(`${this.apiUrl}/signup`, registrationCredentials).subscribe({
       next: (response): void => {
-        this.userAuth.next(response.data);
+        this.userProfile.next(response.data);
         this.authStatus.next(true);
         localStorage.setItem('userToken', `Bearer ${response.data.accessToken}`);
         // localStorage.setItem('refreshToken', response.data.refreshToken);
@@ -64,6 +64,7 @@ export class UserAuth {
       .subscribe({
         next: () => {
           this.authStatus.next(false);
+          this.userProfile.next(this.initialData);
           localStorage.removeItem('userToken');
         },
         error: (err) => console.error(err.message),
