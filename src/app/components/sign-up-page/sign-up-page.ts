@@ -6,7 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UserAuth } from '../../services/user-auth';
+import registrationCredentials from '../../Interfaces/registrationCredentials';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -21,6 +23,8 @@ export class SignUpPage {
     password: new FormControl('', [Validators.minLength(8), Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
   });
+
+  constructor(private userAuthService: UserAuth, private router: Router) {}
 
   get emailValid() {
     return this.signUpForm.controls.email.valid;
@@ -53,5 +57,12 @@ export class SignUpPage {
     return this.passwordValue === this.confirmPasswordValue;
   }
 
-  submit() {}
+  submit() {
+    if (this.signUpForm.valid) {
+      const { email, name, password } = this.signUpForm.value;
+      this.userAuthService.register({ email, password, name } as registrationCredentials);
+      this.signUpForm.reset();
+      this.router.navigate(['/home']);
+    }
+  }
 }

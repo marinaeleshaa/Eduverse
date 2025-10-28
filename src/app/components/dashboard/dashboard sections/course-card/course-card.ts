@@ -21,15 +21,7 @@ export class CourseCard implements OnInit {
   }
 
 
-  stars = [1, 2, 3, 4, 5];
 
-  getStarFill(rate: number, starIndex: number): number {
-    const starValue = starIndex * 2; // each star represents 2 points (10 / 5 = 2)
-    const prevValue = (starIndex - 1) * 2;
-    if (rate >= starValue) return 100; // full
-    if (rate <= prevValue) return 0; // empty
-    return ((rate - prevValue) / 2) * 100; // partial
-  }
 
  handleDelete(id: string) {
   console.log('🧩 handleDelete clicked for id:', id); // 3️⃣ check button click

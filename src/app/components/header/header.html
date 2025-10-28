@@ -11,11 +11,10 @@
 
     <!-- Right section (Auth buttons and menu icon) -->
     <div class="flex xl:order-2 items-center gap-2">
-      @if(!isUserLoggedIn){
+      @let auth = (isUserLoggedIn | async) ;@if(!auth ){
       <!-- Auth Buttons (Desktop) -->
       <div class="hidden xl:flex items-center gap-2 mr-3">
         <button
-          (click)="login()"
           routerLink="login"
           class="px-3 py-2 text-sm font-medium text-green-300 hover:text-white border border-green-300 rounded-lg hover:bg-violet-800 transition-all cursor-pointer"
         >
@@ -28,7 +27,7 @@
           Sign Up
         </button>
       </div>
-      } @if(isUserLoggedIn){
+      } @if(auth){
       <div class="hidden xl:flex items-center gap-6 mr-3">
         <!-- Cart Icon -->
         <div>
@@ -301,7 +300,6 @@
           <!-- Auth Buttons (Mobile only) -->
           <li class="xl:hidden flex gap-2 mt-2">
             <button
-              (click)="login()"
               routerLink="login"
               class="flex-1 px-4 py-2 text-sm font-medium text-green-300 border border-green-300 rounded-lg hover:bg-violet-800 transition-all"
             >
