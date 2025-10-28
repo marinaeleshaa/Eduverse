@@ -57,7 +57,7 @@ export class Header implements OnInit {
     });
   }
 
-  login() {
+  login() { 
     this.userAuth.login();
   }
   logout() {
