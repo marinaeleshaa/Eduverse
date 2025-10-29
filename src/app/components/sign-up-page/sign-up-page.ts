@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,14 +9,16 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { UserAuth } from '../../services/user-auth';
 import registrationCredentials from '../../Interfaces/registrationCredentials';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up-page',
-  imports: [RouterLink, ReactiveFormsModule, FormsModule],
+  imports: [RouterLink, ReactiveFormsModule, FormsModule, AsyncPipe],
   templateUrl: './sign-up-page.html',
   styleUrl: './sign-up-page.css',
 })
-export class SignUpPage {
+export class SignUpPage implements OnInit {
   signUpForm = new FormGroup({
     name: new FormControl('', [Validators.minLength(10), Validators.required]),
     email: new FormControl('', [Validators.email, Validators.required]),
@@ -25,6 +27,11 @@ export class SignUpPage {
   });
 
   constructor(private userAuthService: UserAuth, private router: Router) {}
+
+  errorMessage!: Observable<string>;
+  ngOnInit(): void {
+    this.errorMessage = this.userAuthService.errorMessage$;
+  }
 
   get emailValid() {
     return this.signUpForm.controls.email.valid;
@@ -61,8 +68,12 @@ export class SignUpPage {
     if (this.signUpForm.valid) {
       const { email, name, password } = this.signUpForm.value;
       this.userAuthService.register({ email, password, name } as registrationCredentials);
-      this.signUpForm.reset();
-      this.router.navigate(['/home']);
+      setTimeout(() => {
+        if (this.userAuthService.isLoggedIn) {
+          this.signUpForm.reset();
+          this.router.navigate(['/home']);
+        }
+      }, 1000);
     }
   }
 }
