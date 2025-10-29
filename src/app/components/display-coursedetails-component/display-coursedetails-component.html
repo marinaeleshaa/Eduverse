@@ -1,3 +1,4 @@
+@let data = (course | async);
 <!-- header -->
 <div class="flex items-center justify-between mb-12 sm:mb-16">
   <button
@@ -22,7 +23,7 @@
   <h2
     class="text-2xl md:text-4xl lg:text-5x6l font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-violet-950 via-violet-800 to-violet-700 tracking-tight absolute left-1/2 transform -translate-x-1/2"
   >
-    Course Name
+    {{ data?.courseName }}
   </h2>
   <button
     class="relative me-3 text-violet-900 border-2 rounded-full p-2 md:p-5 border-violet-900 hover:cursor-pointer hover:text-violet-500 hover:border-violet-500 transition duration-150 whitespace-nowrap group"
@@ -67,40 +68,17 @@
       </h3>
 
       <div class="space-y-4">
+        @for(outline of data?.outline; track outline.title; let i = $index){
         <div>
           <h4 class="text-lg font-semibold text-gray-800 flex items-center mb-1">
-            <span class="text-violet-500 mr-2">1.</span> Introduction to Web Development
-            Fundamentals
+            <span class="text-violet-500 mr-2">{{ i + 1 }}.</span> {{ outline.title }}
           </h4>
           <p class="text-sm text-gray-600 pl-6">
             Setting up your development environment, understanding client-server architecture, and
             basic Git.
           </p>
         </div>
-        <div>
-          <h4 class="text-lg font-semibold text-gray-800 flex items-center mb-1">
-            <span class="text-violet-500 mr-2">2.</span> Deep Dive into Semantic HTML5
-          </h4>
-          <p class="text-sm text-gray-600 pl-6">
-            Structuring content, forms, accessibility, and using modern HTML tags.
-          </p>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold text-gray-800 flex items-center mb-1">
-            <span class="text-violet-500 mr-2">3.</span> Modern CSS with Tailwind CSS
-          </h4>
-          <p class="text-sm text-gray-600 pl-6">
-            Utility-first design, responsive layouts (Flexbox/Grid), and customizing Tailwind.
-          </p>
-        </div>
-        <div>
-          <h4 class="text-lg font-semibold text-gray-800 flex items-center mb-1">
-            <span class="text-violet-500 mr-2">4.</span> Project: Building a Portfolio Website
-          </h4>
-          <p class="text-sm text-gray-600 pl-6">
-            Applying all concepts to create a professional, deployable personal website.
-          </p>
-        </div>
+        }
       </div>
     </div>
   </section>
@@ -113,7 +91,7 @@
 
       <div class="flex items-center justify-between py-2 border-b border-gray-200">
         <span class="text-gray-600 font-medium">⏳ Course Hours:</span>
-        <span class="text-lg font-semibold text-gray-900">12.5 hrs</span>
+        <span class="text-lg font-semibold text-gray-900">{{ data?.hours }} hrs</span>
       </div>
 
       <div class="flex items-center justify-between py-2 border-b border-gray-200">
@@ -126,7 +104,7 @@
         <span
           class="px-3 py-1 bg-green-100 text-green-700 text-sm font-bold uppercase tracking-wider rounded-full"
         >
-          Beginner
+          {{ data?.targetAudience }}
         </span>
       </div>
     </div>
@@ -136,24 +114,9 @@
       class="w-full p-6 bg-gradient-to-br from-green-400 to-green-200 text-white rounded-xl shadow-lg flex flex-col items-center"
     >
       <p class="text-sm font-medium mb-1">Total Course Price</p>
-      <h4 class="text-4xl font-black mb-4">$49.99</h4>
+      <h4 class="text-4xl font-black mb-4">${{ data?.price }}</h4>
       <button
-        (click)="
-          addToCart({
-            _id: '1',
-            courseName: 'Web Development',
-            description: 'This is a web development course',
-            courseCover:
-              'https://img.freepik.com/premium-photo/setup-analytics-concept-illustration_1029473-87369.jpg?semt=ais_hybrid&w=740&q=80',
-            price: 50,
-            rate: 4.8,
-            hours: 12.5,
-            category: 'Web Development',
-            targetAudience: 'Beginner',
-            outline: [],
-            conclusion: []
-          })
-        "
+        (click)="addToCart(data!)"
         class="w-full text-center py-3 bg-white text-green-500 font-extrabold text-lg rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
       >
         Add To Cart &rarr;
@@ -178,11 +141,7 @@
         }"
       >
         <p>
-          This comprehensive course is designed for absolute beginners looking to master the
-          fundamentals of modern web development. We'll start from the basics—understanding how the
-          internet works—and quickly move into practical, hands-on projects. By the end, you'll have
-          a portfolio-ready website built from scratch. Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Ad, perspiciatis. Quos eveniet iste id a.
+          {{ data?.description }}
         </p>
       </div>
 
@@ -220,6 +179,7 @@
         class="transition-all duration-500"
       >
         <ul class="grid grid-cols-1 gap-x-6 gap-y-3 text-gray-700 list-none p-0">
+          @for(conclusion of data?.conclusion; track conclusion; let i = $index){
           <li class="flex items-start">
             <svg
               class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0"
@@ -232,50 +192,9 @@
                 clip-rule="evenodd"
               ></path>
             </svg>
-            <span>Build responsive layouts using **Flexbox** and **Grid**.</span>
+            <span>{{ conclusion }}</span>
           </li>
-          <li class="flex items-start">
-            <svg
-              class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span>Understand core **HTML5** structure and semantics.</span>
-          </li>
-          <li class="flex items-start">
-            <svg
-              class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span>Style modern UIs with **Tailwind CSS**.</span>
-          </li>
-          <li class="flex items-start">
-            <svg
-              class="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span>Deploy your first website live on the internet.</span>
-          </li>
+          }
         </ul>
       </div>
       <button
