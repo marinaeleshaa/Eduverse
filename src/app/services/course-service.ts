@@ -10,6 +10,22 @@ import ResponseEntity from '../Interfaces/ResponseEntity';
 export class CourseService {
   constructor(private http: HttpClient) {}
   private apiUrl = 'http://localhost:3000/api/courses';
+
+  private courseSubject = new BehaviorSubject<ICourse>({
+    _id: '',
+    courseName: '',
+    description: '',
+    courseCover: '',
+    price: 0,
+    rate: 0,
+    hours: 0,
+    category: '',
+    targetAudience: '',
+    outline: [],
+    conclusion: [],
+  });
+  course$ = this.courseSubject.asObservable();
+
   private coursesSubject = new BehaviorSubject<ICourse[]>([]);
   courses$ = this.coursesSubject.asObservable();
 
@@ -54,7 +70,7 @@ export class CourseService {
 
   getCourseById(_id: string) {
     this.http.get<ResponseEntity>(`${this.apiUrl}/${_id}`).subscribe({
-      next: (response): ICourse => response.data,
+      next: (response): void => this.courseSubject.next(response.data),
       error: (err): void => console.error('Error fetching course by ID', err),
     });
   }

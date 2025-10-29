@@ -1,19 +1,21 @@
-import { Component, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { Component, signal, WritableSignal, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule, Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WatchLaterService } from '../../services/watch-later-service';
 import { CartService } from '../../services/cart-service';
 import { ICourse } from '../../Interfaces/icourse';
+import { CourseService } from '../../services/course-service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-display-coursedetails-component',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './display-coursedetails-component.html',
   styleUrl: './display-coursedetails-component.css',
 })
-export class DisplayCoursedetailsComponent {
+export class DisplayCoursedetailsComponent implements OnInit {
   // toggle display button
   isCollapsed: boolean = true;
   isListCollapsed: boolean = true;
@@ -35,17 +37,26 @@ export class DisplayCoursedetailsComponent {
   // Keep the rating signal for visual state of stars only
   rating: WritableSignal<number> = signal(0);
 
+  course!: Observable<ICourse>;
+
   constructor(
     private location: Location,
     private router: Router,
     private watchLater: WatchLaterService,
-    private cartService: CartService
+    private cartService: CartService,
+    private courseService: CourseService
   ) {
     this.reviewForm = new FormGroup({
       name: new FormControl(''),
       rating: new FormControl(0, [Validators.required, Validators.min(1)]),
       comment: new FormControl('', [Validators.required]),
     });
+  }
+
+  ngOnInit(): void {
+    const courseId = this.router.url.split('/')[2];
+    this.courseService.getCourseById(courseId);
+    this.course = this.courseService.course$;
   }
 
   addToCart(course: ICourse): void {
