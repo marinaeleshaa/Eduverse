@@ -108,8 +108,8 @@
             </svg>
             <div class="flex items-center justify-center">
               <div class="flex items-start flex-col gap-1 text-md font-bold">
-                <p class="text-lg text-white">Ahmed</p>
-                <p class="text-xs text-white/80">Ahmed@test.com</p>
+                <p class="text-lg text-white">{{ userData.name || 'user' }}</p>
+                <p class="text-xs text-white/80">{{ userData.email }}</p>
               </div>
             </div>
           </div>

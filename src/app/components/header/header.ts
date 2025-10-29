@@ -16,6 +16,7 @@ export class Header implements OnInit {
   isProfileShown = signal(false);
   isCartShown = signal(false);
   isMenuOpen = false;
+  userData = JSON.parse(localStorage.getItem('userData') || '{}');
   isUserLoggedIn!: Observable<boolean>;
   cartItems!: Observable<ICourse[]>;
   constructor(
