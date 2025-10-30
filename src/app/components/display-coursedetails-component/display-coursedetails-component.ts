@@ -39,6 +39,8 @@ export class DisplayCoursedetailsComponent implements OnInit {
 
   course!: Observable<ICourse>;
 
+  cartItems = signal<ICourse[]>([]);
+
   constructor(
     private location: Location,
     private router: Router,
@@ -57,7 +59,14 @@ export class DisplayCoursedetailsComponent implements OnInit {
     const courseId = this.router.url.split('/')[2];
     this.courseService.getCourseById(courseId);
     this.course = this.courseService.course$;
+    this.cartService.cartItems$.subscribe((items) => {
+      this.cartItems.set(items);
+    });
   }
+isInCart(id: string): boolean {
+  return this.cartItems().some(item => item._id === id);
+}
+
 
   addToCart(course: ICourse): void {
     this.cartService.addToCart(course);

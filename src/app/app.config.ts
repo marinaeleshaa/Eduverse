@@ -10,7 +10,8 @@ import {
 } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { UserInterceptor } from './interceptors/userInterceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,6 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'disabled',
       })
     ),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(),withInterceptors([UserInterceptor])),
   ],
 };

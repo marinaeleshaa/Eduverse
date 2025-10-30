@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
     path: 'dashboard',
-    component: Dashboard,
+    loadComponent: () => import('./components/dashboard/dashboard').then((m) => m.Dashboard),
     children: [
       { path: '', redirectTo: 'courses', pathMatch: 'full' },
       { path: 'courses', component: CoursesDash },
@@ -30,10 +30,16 @@ export const routes: Routes = [
     canActivate: [dashboardGuard],
   },
   { path: 'home', component: HomePage },
-  { path: 'about', component: AboutPage },
+  {
+    path: 'about',
+    loadComponent: () => import('./components/about-page/about-page').then((m) => m.AboutPage),
+  },
   {
     path: 'courses',
-    component: CoursesMainPage,
+    loadComponent: () =>
+      import('./components/courses/courses-main-page/courses-main-page').then(
+        (m) => m.CoursesMainPage
+      ),
     children: [
       { path: '', redirectTo: 'allcourses', pathMatch: 'full' },
       { path: 'allcourses', component: CoursesPage },
@@ -42,7 +48,10 @@ export const routes: Routes = [
   },
   {
     path: 'roadmap',
-    component: RoadmapMainPage,
+    loadComponent: () =>
+      import('./components/roadmap/roadmap-main-page/roadmap-main-page').then(
+        (m) => m.RoadmapMainPage
+      ),
     children: [
       { path: '', redirectTo: 'tracks', pathMatch: 'full' },
       { path: 'tracks', component: TracksPage },
@@ -51,8 +60,21 @@ export const routes: Routes = [
     ],
     canActivate: [loginAuthGuard],
   },
-  { path: 'login', component: LoginPage, canActivate: [loginProtectedGuard] },
-  { path: 'signUp', component: SignUpPage, canActivate: [loginProtectedGuard] },
-  { path: 'watch-later', component: WatchLaterPage, canActivate: [dashboardGuard] },
+  {
+    path: 'login',
+    loadComponent: () => import('./components/login-page/login-page').then((m) => m.LoginPage),
+    canActivate: [loginProtectedGuard],
+  },
+  {
+    path: 'signUp',
+    loadComponent: () => import('./components/sign-up-page/sign-up-page').then((m) => m.SignUpPage),
+    canActivate: [loginProtectedGuard],
+  },
+  {
+    path: 'watch-later',
+    loadComponent: () =>
+      import('./components/watch-later-page/watch-later-page').then((m) => m.WatchLaterPage),
+    canActivate: [dashboardGuard],
+  },
   { path: '**', component: NotFoundPage },
 ];
