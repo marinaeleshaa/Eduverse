@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
+@import 'tailwindcss';
 /* styles.css أو global.css */
 
+img {
+  -webkit-user-drag: none;
+}
+
+::selection {
+  background-color: #4d179a;
+  color: #fff;
+}
