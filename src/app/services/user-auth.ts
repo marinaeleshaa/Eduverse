@@ -67,7 +67,8 @@ export class UserAuth {
       .post<ResponseEntity>(
         `${this.apiUrl}/logout`,
         {}, // body of the request
-        { headers: { authorization: `${localStorage.getItem('userToken')}` } }
+        // ! added in user interceptor
+        // { headers: { authorization: `${localStorage.getItem('userToken')}` } }
       )
       .subscribe({
         next: (): void => {
