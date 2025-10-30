@@ -21,7 +21,7 @@
     </svg>
   </button>
   <h2
-    class="text-2xl md:text-4xl lg:text-5x6l font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-violet-950 via-violet-800 to-violet-700 tracking-tight absolute left-1/2 transform -translate-x-1/2"
+    class="text-2xl md:text-4xl lg:text-5x6l font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-violet-950 via-violet-800 to-violet-500 tracking-tight absolute left-1/2 transform -translate-x-1/2 capitalize"
   >
     {{ data?.courseName }}
   </h2>
@@ -91,7 +91,7 @@
 
       <div class="flex items-center justify-between py-2 border-b border-gray-200">
         <span class="text-gray-600 font-medium">⏳ Course Hours:</span>
-        <span class="text-lg font-semibold text-gray-900">{{ data?.hours }} hrs</span>
+        <span class="text-lg font-semibold text-violet-900">{{ data?.hours }} hrs</span>
       </div>
 
       <div class="flex items-center justify-between py-2 border-b border-gray-200">
@@ -117,11 +117,50 @@
       <h4 class="text-4xl font-black mb-4">${{ data?.price }}</h4>
       <button
         (click)="addToCart(data!)"
-        class="w-full text-center py-3 bg-white text-green-500 font-extrabold text-lg rounded-lg shadow-md hover:bg-gray-100 transition duration-300"
+        [disabled]="!isInCart"
+        class="w-full text-center py-3 bg-white text-green-500 font-extrabold text-lg rounded-lg shadow-md transition duration-300 cursor-pointer group flex items-center justify-center gap-2"
+        [ngClass]="{
+          'pointer-events-none cursor-default opacity-70': isInCart(data!._id)
+        }"
       >
-        Add To Cart &rarr;
+        {{ isInCart(data!._id) ? 'Added to Cart' : 'Add to Cart' }}
+        @if (isInCart(data!._id)) {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-check-icon lucide-check"
+        >
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+        } @else {
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right-icon lucide-arrow-right group-hover:translate-x-5 transition duration-300"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+        }
       </button>
-      <p class="text-xs mt-2 opacity-80">Lifetime access & 30-day money-back guarantee.</p>
+      <p class="text-xs mt-2 opacity-80 text-gray-500">
+        Lifetime access & 30-day money-back guarantee.
+      </p>
     </div>
 
     <!-- Course Overview  -->
